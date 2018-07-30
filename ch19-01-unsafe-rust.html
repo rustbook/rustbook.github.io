@@ -1,0 +1,575 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Unsafe Rust - The Rust Programming Language</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="_FontAwesome/css/font-awesome.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+
+    </head>
+    <body class="light">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="ch01-00-introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li></ol></li><li><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Guessing Game Tutorial</a></li><li><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Common Programming Concepts</a></li><li><ol class="section"><li><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Variables and Mutability</a></li><li><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Data Types</a></li><li><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> How Functions Work</a></li><li><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Comments</a></li><li><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Control Flow</a></li></ol></li><li><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Understanding Ownership</a></li><li><ol class="section"><li><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> What is Ownership?</a></li><li><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> References &amp; Borrowing</a></li><li><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Slices</a></li></ol></li><li><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Using Structs to Structure Related Data</a></li><li><ol class="section"><li><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Defining and Instantiating Structs</a></li><li><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> An Example Program Using Structs</a></li><li><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Method Syntax</a></li></ol></li><li><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enums and Pattern Matching</a></li><li><ol class="section"><li><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Defining an Enum</a></li><li><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> The match Control Flow Operator</a></li><li><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Concise Control Flow with if let</a></li></ol></li><li><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> Modules</a></li><li><ol class="section"><li><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> mod and the Filesystem</a></li><li><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> Controlling Visibility with pub</a></li><li><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> Importing Names with use</a></li></ol></li><li><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Error Handling</a></li><li><ol class="section"><li><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Unrecoverable Errors with panic!</a></li><li><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Recoverable Errors with Result</a></li><li><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> To panic! or Not To panic!</a></li></ol></li><li><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Generic Types, Traits, and Lifetimes</a></li><li><ol class="section"><li><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Generic Data Types</a></li><li><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Traits: Defining Shared Behavior</a></li><li><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Validating References with Lifetimes</a></li></ol></li><li><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Testing</a></li><li><ol class="section"><li><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Writing tests</a></li><li><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Running tests</a></li><li><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Test Organization</a></li></ol></li><li><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> An I/O Project: Building a Command Line Program</a></li><li><ol class="section"><li><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Accepting Command Line Arguments</a></li><li><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Reading a File</a></li><li><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Refactoring to Improve Modularity and Error Handling</a></li><li><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Developing the Library’s Functionality with Test Driven Development</a></li><li><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Working with Environment Variables</a></li><li><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Writing Error Messages to Standard Error Instead of Standard Output</a></li></ol></li><li><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Functional Language Features in Rust</a></li><li><ol class="section"><li><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Closures</a></li><li><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Iterators</a></li><li><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Improving our I/O Project</a></li><li><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Performance</a></li></ol></li><li><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> More about Cargo and Crates.io</a></li><li><ol class="section"><li><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Customizing Builds with Release Profiles</a></li><li><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Publishing a Crate to Crates.io</a></li><li><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Cargo Workspaces</a></li><li><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Extending Cargo with Custom Commands</a></li></ol></li><li><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Smart Pointers</a></li><li><ol class="section"><li><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box<T> Points to Data on the Heap and Has a Known Size</a></li><li><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> The Deref Trait Allows Access to the Data Through a Reference</a></li><li><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> The Drop Trait Runs Code on Cleanup</a></li><li><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc<T>, the Reference Counted Smart Pointer</a></li><li><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell<T> and the Interior Mutability Pattern</a></li><li><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Creating Reference Cycles and Leaking Memory is Safe</a></li></ol></li><li><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Fearless Concurrency</a></li><li><ol class="section"><li><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Is Rust an Object-Oriented Programming Language?</a></li><li><ol class="section"><li><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> What Does Object-Oriented Mean?</a></li><li><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Trait Objects for Using Values of Different Types</a></li><li><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Object-Oriented Design Pattern Implementations</a></li></ol></li><li><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Patterns Match the Structure of Values</a></li><li><ol class="section"><li><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Refutability: Whether a Pattern Might Fail to Match</a></li><li><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Advanced Features</a></li><li><ol class="section"><li><a href="ch19-01-unsafe-rust.html" class="active"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li><a href="ch19-02-advanced-lifetimes.html"><strong aria-hidden="true">19.2.</strong> Advanced Lifetimes</a></li><li><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> Advanced Traits</a></li><li><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> Advanced Types</a></li><li><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions &amp; Closures</a></li></ol></li><li><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Final Project: Building a Multithreaded Web Server</a></li><li><ol class="section"><li><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> A Single Threaded Web Server</a></li><li><a href="ch20-02-slow-requests.html"><strong aria-hidden="true">20.2.</strong> How Slow Requests Affect Throughput</a></li><li><a href="ch20-03-designing-the-interface.html"><strong aria-hidden="true">20.3.</strong> Designing the Thread Pool Interface</a></li><li><a href="ch20-04-storing-threads.html"><strong aria-hidden="true">20.4.</strong> Creating the Thread Pool and Storing Threads</a></li><li><a href="ch20-05-sending-requests-via-channels.html"><strong aria-hidden="true">20.5.</strong> Sending Requests to Threads Via Channels</a></li><li><a href="ch20-06-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.6.</strong> Graceful Shutdown and Cleanup</a></li></ol></li><li><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Appendix</a></li><li><ol class="section"><li><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Keywords</a></li><li><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - Operators</a></li></ol></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">The Rust Programming Language</h1> 
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="ch19-01-unsafe-rust.html#aНебезопасный-rust" id="aНебезопасный-rust"><h2>Небезопасный Rust</h2></a>
+<p>Во всех предыдущих главах этой книги мы обсуждали код написанный в Rust, который
+гарантирует безопасность памяти во время компиляции. Однако внутри Rust скрывается
+другой язык, - небезопасный Rust, которые не обеспечивает безопасной работы с памятью.
+Это язык работает также как и первый, но предоставляет вам дополнительные возможности.</p>
+<p>Небезопасный Rust существует, потому что по своей природе статический анализ является
+консервативным. Когда пытаясь определить, поддерживает ли код некоторые гарантии
+или нет, лучше отклонить некоторые программы, которые действительны, чем принимать
+некоторые программы, которые ошибочны. Бывают случаи, когда ваш код может быть в
+порядке, но Rust считает это нет. В этих случаях вы можете использовать небезопасный
+код, чтобы сообщить компилятору: «поверь мне, я знаю, что я делаю». Недостатком
+является то, что вы сами; если вы написали код неправильно, можете иметь проблемы
+из-за небезопасной работы с памятью, такие как нулевой указатель при
+разыменовании.</p>
+<p>Есть еще одна причина, по которой Rust должен иметь небезопасный код: базовый
+аппаратное обеспечение компьютеров по своей сути небезопасно. Если Rust не позволял
+вам делать небезопасные операций, были бы некоторые задачи, которые вы просто не
+могли сделать. Но Rust должен позволять вам выполнять низкоуровневые системные
+программы, например, напрямую взаимодействовать с вашей операционной системой или
+даже писать собственные система! Это часть целей языка. Нам нужен реализовать
+это.</p>
+<a class="header" href="ch19-01-unsafe-rust.html#aНебезопасные-сверхспособности" id="aНебезопасные-сверхспособности"><h3>Небезопасные сверхспособности</h3></a>
+<p>Мы переключаемся на небезопасный Rust, используя ключевое слово <code>unsafe</code> и создаём
+новый блок, который содержит небезопасный код. Есть четыре действия, которые вы
+можете предпринять в небезопасном Rust, которые вы не можете сделать безопасном.
+Мы называем это «небезопасные суперспособности». Мы не видели большинство этих функций,
+так как ими можно воспользоваться с <code>unsafe</code>.</p>
+<ol>
+<li>Разыменование сырого указателя</li>
+<li>Вызов небезопасной функции или метода</li>
+<li>Доступ или изменение изменяемой статической переменной</li>
+<li>Реализация небезопасного типажа</li>
+</ol>
+<p>Важно понимать, что <code>unsafe</code> не отключает проверку заимствования или любые другие
+проверки безопасности Rust: если вы используете ссылку в небезопасной
+кода, он все равно будет проверена. Единственное, что делает ключевое слово <code>unsafe</code>
+дают вам доступ к этим четырем функциям, которые не проверяются компилятором для
+безопасности памяти. Вы по-прежнему получаете некоторую степень безопасности внутри
+небезопасного блока! Кроме того, <code>unsafe</code> не означает, что код внутри блока опасен или
+или будет иметь проблемы с безопасностью памяти: цель состоит в том, что вы, как
+программист гарантируете, что код внутри <code>unsafe</code> блока будет иметь действительную
+память, во время отключения проверок компилятора.</p>
+<p>Однако люди ошибаются, и ошибки случаются. Если вы сделаете в небезопасном блоке
+связанную с безопасностью памяти, вы будете знать, что она должна
+быть связанными с этим блоком. Это упрощает поиск ошибок, так как мы знаем, что
+Rust проверяет для нас весь другой код. Для того, чтобы свести ошибки работы с
+памятью к минимуму необходимо минимизировать небезопасные блоки кода : сохраняйте
+<code>unsafe</code> блоки малыми и вы будете благодарить себя позже, так как у вас будет
+меньше кода для анализа.</p>
+<p>Чтобы максимально изолировать небезопасный код, рекомендуется заключить небезопасный
+код в безопасную абстракцию и предоставить безопасный API, который мы будем обсуждать,
+когда будем обсуждать небезопасные функции и методы. Части стандартная библиотеки
+реализованы как безопасные абстракции над небезопасным кодом, которые были проверены.
+Это предотвращает утечку памяти в <code>unsafe</code> блоках.</p>
+<p>Давайте поговорим о каждой из четырех небезопасных свехспособностях, и по пути
+мы рассмотрим некоторые абстракции, которые обеспечивают безопасный интерфейс
+для небезопасного кода.</p>
+<a class="header" href="ch19-01-unsafe-rust.html#aРазыменование-сырых-указателей" id="aРазыменование-сырых-указателей"><h3>Разыменование сырых указателей</h3></a>
+<p>Рассмотрим материал главы 4 ещё раз. Там мы говорили о ссылках. Мы изучили, что
+компилятор всегда проверяет действительность ссылок. Небезопасный Rust предоставляет
+два новых типа для работы со ссылками. Также как ссылки, мы имеет изменяемые и
+неизменяемые указатели (<code>*const T</code> и <code>*mut T</code>). В контексте сырых ссылок &quot;неизменяемость&quot;
+значит, что указателям нельзя присваивать значения непосредственно после разыменования.</p>
+<p>Отличия сырых ссылок от умных указателей:</p>
+<ul>
+<li>разрешается игнорирование правил заимствования, можно иметь изменяемые и неизменяемы
+указатели или множество указателей на одну и ту же область памяти.</li>
+<li>нет гарантии действительности указателя</li>
+<li>возможность иметь null-ссылки</li>
+<li>нет реализации автоматической очистки памяти</li>
+</ul>
+<p>Код 19-1 демонстрирует, как создавать сырые ссылки из обычных ссылок:</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+let mut num = 5;
+
+let r1 = &amp;num as *const i32;
+let r2 = &amp;mut num as *mut i32;
+#}</code></pre></pre>
+<p><span class="caption">код 19-1: создание сырых ссылок из ссылок</span></p>
+<p><code>*const T</code> является неизменяемым сырым указателем. <code>*mut T</code> является изменяемым
+сырым указателем. Мы создали сырые указатели с помощью ключевого слова <code>as</code> приведя
+обычные изменяемые и неизменяемые ссылки к этим типам.</p>
+<p>Код 19-2 показывает, как создать сырой указатель на конкретный адрес памяти.
+Это, конечно, весьма опасное действие делать такие присваивания, но это возможно:</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+let address = 0x012345usize;
+let r = address as *const i32;
+#}</code></pre></pre>
+<p><span class="caption">код 19-2: создание сырых указателей на определённый адрес
+памяти</span></p>
+<p>Обратите внимания, что в приведённых примерах нет блока <code>unsafe</code>. Вы можете <em>создать</em>
+сырые указатели в безопасном коде, но вы не можете разыменовать их или прочесть
+данные. Использование оператора разыменования сырых указателей разрешается только
+в блоке <code>unsafe</code>:</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+let mut num = 5;
+
+let r1 = &amp;num as *const i32;
+let r2 = &amp;mut num as *mut i32;
+
+unsafe {
+    println!(&quot;r1 is: {}&quot;, *r1);
+    println!(&quot;r2 is: {}&quot;, *r2);
+}
+#}</code></pre></pre>
+<p><span class="caption">код 19-3: разыменование сырых указателей в блоке <code>unsafe</code></span></p>
+<p>Создание указателей разрешено. Только при попытке доступа к объекту могут быть
+какие-либо проблемы.</p>
+<p>Также обратите внимание, что в примерах кода 19-1 и 19-3 мы создали <code>*const i32</code>
+и <code>*mut i32</code>, которые ссылаются на одну и ту же область памяти. Если мы попытаемся
+создать неизменяемую и изменяемую ссылку на <code>num</code> вместо сырых указателей, такой
+код не скомпилируется, т.к. будут нарушены правила наличия изменяемых и неизменяемых
+ссылок. С помощью сырых указателей мы можем создать изменяемый указатель и неизменяемый
+указатель на одну и ту же область памяти и изменять данные с помощью изменяемого
+указателя, потенциально создавая эффект гонки. Будьте осторожны!</p>
+<p>Если существует столько возможных неприятностей, для чего же нужны эти сырые ссылки?!
+Одно весьма важное их свойство - это возможность быть интерфейсом кода на С. Другим
+вариантом использования является создание безопасных абстракций, которых не сможет
+понять система проверки заимствования. Далее мы рассмотрим небезопасные функции,
+где мы познакомимся с примером использования безопасных абстракций, которые используют
+небезопасный код.</p>
+<a class="header" href="ch19-01-unsafe-rust.html#aВызов-небезопасной-функции-или-метода" id="aВызов-небезопасной-функции-или-метода"><h3>Вызов небезопасной функции или метода</h3></a>
+<p>Второй операция, которую мы рассмотрим  - это небезопасная функция. Небезопасные
+функции и методы выглядят также, как и обычные функции и методы, но они имеют
+дополнительное обозначение <code>unsafe</code> перед собой. Рассмотрим пример::</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+unsafe fn dangerous() {}
+
+unsafe {
+    dangerous();
+}
+#}</code></pre></pre>
+<p>Если мы попытаемся вызвать функцию <code>dangerous</code> без блока <code>unsafe</code>, мы получим ошибку:</p>
+<pre><code class="language-text">error[E0133]: call to unsafe function requires unsafe function or block
+ --&gt; &lt;anon&gt;:4:5
+  |
+4 |     dangerous();
+  |     ^^^^^^^^^^^ call to unsafe function
+</code></pre>
+<p>Вставив <code>unsafe</code>-блок вокруг вызова функции <code>dangerous</code>, мы сообщаем компилятору,
+что мы понимаем, что используем небезопасную функцию, мы знаем как её использовать
+правильным образом и мы соблюли все необходимые условия.</p>
+<a class="header" href="ch19-01-unsafe-rust.html#aСоздание-безопасных-абстракций-вокруг-небезопасного-кода" id="aСоздание-безопасных-абстракций-вокруг-небезопасного-кода"><h4>Создание безопасных абстракций вокруг небезопасного кода</h4></a>
+<p>Рассмотрим пример из стандартной библиотеки. Рассмотрим функцию <code>split_at_mut</code> и
+посмотрим как мы можем реализовать её сами. Этот безопасный метод определён в
+изменяемом срезе. Метод получает срез и разделяет его на два:</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+let mut v = vec![1, 2, 3, 4, 5, 6];
+
+let r = &amp;mut v[..];
+
+let (a, b) = r.split_at_mut(3);
+
+assert_eq!(a, &amp;mut [1, 2, 3]);
+assert_eq!(b, &amp;mut [4, 5, 6]);
+#}</code></pre></pre>
+<p><span class="caption">код 19-4: использование безопасной функции <code>split_at_mut</code></span></p>
+<p>Эту функцию нельзя реализовать, используя только безопасный Rust. Попытка реализации
+может выглядеть примерно так (19-5). Для просторы мы реализуем функцию, а не метод
+и только для целых чисел:</p>
+<pre><code class="language-rust ignore">fn split_at_mut(slice: &amp;mut [i32], mid: usize) -&gt; (&amp;mut [i32], &amp;mut [i32]) {
+    let len = slice.len();
+
+    assert!(mid &lt;= len);
+
+    (&amp;mut slice[..mid],
+     &amp;mut slice[mid..])
+}
+</code></pre>
+<p><span class="caption">код 19-5: попытка реализации функции <code>split_at_mut</code></span></p>
+<p>Эта функция сначала получает общую длину среза. Далее, проверяет значение что
+параметр меньше или равен этому значению.</p>
+<p>Далее, функция возвращает два среза в кортеже: первый от 0 до значения, второй от
+значения до конца среза.</p>
+<p>При попытке компиляции данной функции вы получите следующее сообщение об ошибке:</p>
+<pre><code class="language-text">error[E0499]: cannot borrow `*slice` as mutable more than once at a time
+ --&gt; &lt;anon&gt;:6:11
+  |
+5 |     (&amp;mut slice[..mid],
+  |           ----- first mutable borrow occurs here
+6 |      &amp;mut slice[mid..])
+  |           ^^^^^ second mutable borrow occurs here
+7 | }
+  | - first borrow ends here
+</code></pre>
+<p>Компилятор не понимает, что вы хотите получить различные части среза, он понимает
+лишь то, что вы хотите осуществить заимствование дважды. Заимствование различных
+частей среза не вызывает ошибок компиляции, но всё же это не является лучшим решением.</p>
+<p>Код 19-6 демонстрирует, как можно использовать <code>unsafe</code>-блок, сырой указатель и
+вызов небезопасной функции для реализации целей функции <code>split_at_mut</code>:</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+use std::slice;
+
+fn split_at_mut(slice: &amp;mut [i32], mid: usize) -&gt; (&amp;mut [i32], &amp;mut [i32]) {
+    let len = slice.len();
+    let ptr = slice.as_mut_ptr();
+
+    assert!(mid &lt;= len);
+
+    unsafe {
+        (slice::from_raw_parts_mut(ptr, mid),
+         slice::from_raw_parts_mut(ptr.offset(mid as isize), len - mid))
+    }
+}
+#}</code></pre></pre>
+<p><span class="caption">код 19-6: использование небезопасного кода для реализации
+<code>split_at_mut</code></span></p>
+<p>Пожалуйста, освежите в памяти материал главы 4, где мы изучили, что указатели
+на одни и теже данные являются срезом. Мы часто использовали метод <code>len</code> для
+получения длинны среза. Мы можем использовать метод <code>as_mut_ptr</code> для получения
+сырого указателя на срез. В этом случае мы получаем изменяемый срез <code>i32</code> значений,
+который мы сохраняем в переменной <code>ptr</code>.</p>
+<p>Благодаря небезопасному методу <code>slice::from_raw_parts_mut</code> мы смогли реализовать
+задуманный в предыдущем решении алгоритм.</p>
+<p>Т.к. срезы являются безопасными языковыми конструкциями, после их создания ими
+можно пользоваться в безопасной части кода. Функция <code>slice::from_raw_parts_mut</code>
+является небезопасной, т.к. она получает сырой указатель (без проверки на действительность).
+Метод <code>offset</code> сырого указателя также не является безопасным, т.к. он работает с
+данными не проверяя их действительность. Мы заключили вызовы данных функций в
+<code>unsave</code>-блок.</p>
+<p>Обратите внимание, что результат функции <code>split_at_mut</code> является безопасным.
+Мы создали безопасную абстракцию для небезопасного кода с помощью <code>unsafe</code>-блока.</p>
+<p>В отличии от функции <code>slice::from_raw_parts_mut</code> код 19-7 скорей всего не будет
+работать. Этот код получает данные по адресу памяти и создаёт срез длинной 10000:</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+use std::slice;
+
+let address = 0x012345usize;
+let r = address as *mut i32;
+
+let slice = unsafe {
+    slice::from_raw_parts_mut(r, 10000)
+};
+#}</code></pre></pre>
+<p><span class="caption">код 19-7: создание среза по адресу памяти</span></p>
+<p>Использование такого кода может привести к непредсказуемым последствиям.</p>
+<a class="header" href="ch19-01-unsafe-rust.html#extern-функции-вызывающие-внешний-код-являются-небезопасными" id="extern-функции-вызывающие-внешний-код-являются-небезопасными"><h4><code>extern</code> функции вызывающие внешний код являются небезопасными</h4></a>
+<p>Иногда появляется необходимость вызвать код написанный на другом языке программирования.
+Для этой цели существует специальное ключевое слов <code>extern</code>, которое облегчает
+создание и использование <em>интерфейса внешних функций</em> (<em>Foreign Function Interface</em>
+(FFI)). Код 19-8 демонстрирует, как установить связь с С-функцией <code>abs</code>. Функции
+в блоках <code>extern</code> всегда являются небезопасными:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">extern &quot;C&quot; {
+    fn abs(input: i32) -&gt; i32;
+}
+
+fn main() {
+    unsafe {
+        println!(&quot;Absolute value of -3 according to C: {}&quot;, abs(-3));
+    }
+}
+</code></pre></pre>
+<p><span class="caption">код 19-8: определение и вызов <code>extern</code>-функции написанной
+на другом языке программирования</span></p>
+<p>С помощью блока <code>extern &quot;C&quot;</code> мы сообщаем какую функцию мы хотим вызвать. <code>&quot;C&quot;</code>
+определяет интерфейс какого языка будет использован <em>application binary interface</em>
+(ABI). Наиболее часто используемым интерфейсом является интерфейс языка C.</p>
+<p>Вызов внешних функций всегда является небезопасным, т.к. компилятор Rust не может
+гарантировать безопасность такого кода.</p>
+<!-- PROD: START BOX -->
+<a class="header" href="ch19-01-unsafe-rust.html#aВызов-функций-rust-из-других-языков-программирования" id="aВызов-функций-rust-из-других-языков-программирования"><h5>Вызов функций Rust из других языков программирования</h5></a>
+<p>Ключевое слово <code>extern</code> также используется для создания интерфейса, который позволяет
+вызывать функции Rust из других языков программирования. Вместо блока <code>extern</code>
+мы можем добавить к описанию функции это ключевое слово. Также необходимо добавить
+аннотацию <code>#[no_mangle]</code>, чтобы сообщить компилятору не анализировать данную функцию.
+В следующем примере функция <code>call_from_c</code> будет доступна для кода языка программирования
+Си (С):</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+#[no_mangle]
+pub extern &quot;C&quot; fn call_from_c() {
+    println!(&quot;Just called a Rust function from C!&quot;);
+}
+#}</code></pre></pre>
+<p>Использование <code>extern</code> не требует использования <code>unsafe</code></p>
+<!-- PROD: END BOX -->
+<a class="header" href="ch19-01-unsafe-rust.html#aПолучение-доступа-и-внесение-изменений-в-изменяемую-статическую-переменную" id="aПолучение-доступа-и-внесение-изменений-в-изменяемую-статическую-переменную"><h3>Получение доступа и внесение изменений в изменяемую статическую переменную</h3></a>
+<p>Рассказывая о возможностях языка мы ещё ни разу не упомянули о глобальных переменных.
+Множество языков программирования поддерживают такую возможность. Этот функционал
+несёт в себе потенциальные проблемы, например, если в многопоточной среде вы будете
+получать доступ к такой переменной, то может возникнуть эффект гонки.</p>
+<p>Глобальные переменные в Rust называют <em>статическими</em> (<em>static</em>). Код 19-9 демонстрирует
+определение и использование статической переменной имеющий тип строковый срез:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">static HELLO_WORLD: &amp;str = &quot;Hello, world!&quot;;
+
+fn main() {
+    println!(&quot;name is: {}&quot;, HELLO_WORLD);
+}
+</code></pre></pre>
+<p><span class="caption">код 19-9: определение и использование неизменяемой статической
+переменной</span></p>
+<p><code>static</code> переменные походи на константы. Их имена по договорённости также необходимо
+писать с большой буквы <code>SCREAMING_SNAKE_CASE</code>. Кроме того у таких переменных обязательно
+необходимо (<em>must</em>) указывать тип. В данном случае это <code>&amp;'static str</code>. Только
+ссылки с модификатором <code>'static</code> могут быть сохранены в статической переменной.
+По этой причине нет необходимости аннотировать такие переменные модификатором
+времени жизни.</p>
+<p>Доступ к неизменяемым переменным является безопасным. Значения в статических
+переменных имеют фиксированный адрес в памяти. В отличии от них константам разрешается
+дублировать свои данные.</p>
+<p>Другое отличие статических переменных от констант - они могут быть изменяемыми.
+Доступ и изменения статических переменных являются небезопасными. Пример кода 19-10
+показывает как объявлять, получать доступ и изменять изменяемую статическую переменную
+<code>COUNTER</code>:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">static mut COUNTER: u32 = 0;
+
+fn add_to_count(inc: u32) {
+    unsafe {
+        COUNTER += inc;
+    }
+}
+
+fn main() {
+    add_to_count(3);
+
+    unsafe {
+        println!(&quot;COUNTER: {}&quot;, COUNTER);
+    }
+}
+</code></pre></pre>
+<p><span class="caption">код 19-10: чтение и запись изменяемой статической переменной</span></p>
+<p>Также как и обычная переменная, статическая переменная может быть изменяемой. Для
+этого в описании переменной необходимо использовать ключевое слово <code>mut</code>. Каждый
+раз, когна необходим доступ к такой переменной, используется <code>unsafe</code>-блок. Данный
+код компилируется и выводит <code>COUNTER: 3</code>. В многопоточной среде при доступе к
+такой переменной эффект гонок вполне вероятен.</p>
+<p>Использование изменяемых статических данных весьма небезопасно. Весьма сложно отслеживать
+их корректность и защитить от эффекта гонок в многопоточной среде.</p>
+<a class="header" href="ch19-01-unsafe-rust.html#aРеализация-небезопасных-типажей" id="aРеализация-небезопасных-типажей"><h3>Реализация небезопасных типажей</h3></a>
+<p>С помощью <code>unsafe</code> также можно реализовать небезопасные типажи. При этом типаж и
+его реализации помечаются <code>unsafe</code>:</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+unsafe trait Foo {
+    // methods go here
+}
+
+unsafe impl Foo for i32 {
+    // method implementations go here
+}
+#}</code></pre></pre>
+<p><span class="caption">код 19-11: определение и реализация небезопасного типажа</span></p>
+<p>Также как и небезопасные функции, методы в небезопасных типажах могут быть небезопасны
+поэтому их реализации также помечаются <code>unsafe</code></p>
+<p>As an example, recall the <code>Sync</code> and <code>Send</code> marker traits from Chapter 16, and
+that the compiler implements these automatically if our types are composed
+entirely of <code>Send</code> and <code>Sync</code> types. If we implement a type that contains
+something that’s not <code>Send</code> or <code>Sync</code> such as raw pointers, and we want to mark
+our type as <code>Send</code> or <code>Sync</code>, that requires using <code>unsafe</code>. Rust can’t verify
+that our type upholds the guarantees that a type can be safely sent across
+threads or accessed from multiple threads, so we need to do those checks
+ourselves and indicate as such with <code>unsafe</code>.</p>
+<p>Использование <code>unsafe</code> не делает в описанных четырёх случаях не делает код неправильным
+или подозрительным. Просто к такой код не может быть проанализирован компилятором
+должным образом и на программиста ложится ответственность за его корректность.
+Кроме того данная аннотация сужает потенциально опасный код до минимума, что может
+ускорить процесс поиска ошибки.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="ch19-00-advanced-features.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="ch19-02-advanced-lifetimes.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="ch19-00-advanced-features.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="ch19-02-advanced-lifetimes.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+
+        
+        <script src="searchindex.js" type="text/javascript" charset="utf-8"></script>
+        
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+    </body>
+</html>

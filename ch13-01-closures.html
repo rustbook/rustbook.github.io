@@ -1,0 +1,895 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Closures - The Rust Programming Language</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="_FontAwesome/css/font-awesome.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+
+    </head>
+    <body class="light">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="ch01-00-introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li></ol></li><li><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Guessing Game Tutorial</a></li><li><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Common Programming Concepts</a></li><li><ol class="section"><li><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Variables and Mutability</a></li><li><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Data Types</a></li><li><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> How Functions Work</a></li><li><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Comments</a></li><li><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Control Flow</a></li></ol></li><li><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Understanding Ownership</a></li><li><ol class="section"><li><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> What is Ownership?</a></li><li><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> References &amp; Borrowing</a></li><li><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Slices</a></li></ol></li><li><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Using Structs to Structure Related Data</a></li><li><ol class="section"><li><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Defining and Instantiating Structs</a></li><li><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> An Example Program Using Structs</a></li><li><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Method Syntax</a></li></ol></li><li><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enums and Pattern Matching</a></li><li><ol class="section"><li><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Defining an Enum</a></li><li><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> The match Control Flow Operator</a></li><li><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Concise Control Flow with if let</a></li></ol></li><li><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> Modules</a></li><li><ol class="section"><li><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> mod and the Filesystem</a></li><li><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> Controlling Visibility with pub</a></li><li><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> Importing Names with use</a></li></ol></li><li><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Error Handling</a></li><li><ol class="section"><li><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Unrecoverable Errors with panic!</a></li><li><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Recoverable Errors with Result</a></li><li><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> To panic! or Not To panic!</a></li></ol></li><li><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Generic Types, Traits, and Lifetimes</a></li><li><ol class="section"><li><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Generic Data Types</a></li><li><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Traits: Defining Shared Behavior</a></li><li><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Validating References with Lifetimes</a></li></ol></li><li><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Testing</a></li><li><ol class="section"><li><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Writing tests</a></li><li><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Running tests</a></li><li><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Test Organization</a></li></ol></li><li><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> An I/O Project: Building a Command Line Program</a></li><li><ol class="section"><li><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Accepting Command Line Arguments</a></li><li><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Reading a File</a></li><li><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Refactoring to Improve Modularity and Error Handling</a></li><li><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Developing the Library’s Functionality with Test Driven Development</a></li><li><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Working with Environment Variables</a></li><li><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Writing Error Messages to Standard Error Instead of Standard Output</a></li></ol></li><li><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Functional Language Features in Rust</a></li><li><ol class="section"><li><a href="ch13-01-closures.html" class="active"><strong aria-hidden="true">13.1.</strong> Closures</a></li><li><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Iterators</a></li><li><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Improving our I/O Project</a></li><li><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Performance</a></li></ol></li><li><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> More about Cargo and Crates.io</a></li><li><ol class="section"><li><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Customizing Builds with Release Profiles</a></li><li><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Publishing a Crate to Crates.io</a></li><li><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Cargo Workspaces</a></li><li><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Extending Cargo with Custom Commands</a></li></ol></li><li><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Smart Pointers</a></li><li><ol class="section"><li><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box<T> Points to Data on the Heap and Has a Known Size</a></li><li><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> The Deref Trait Allows Access to the Data Through a Reference</a></li><li><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> The Drop Trait Runs Code on Cleanup</a></li><li><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc<T>, the Reference Counted Smart Pointer</a></li><li><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell<T> and the Interior Mutability Pattern</a></li><li><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Creating Reference Cycles and Leaking Memory is Safe</a></li></ol></li><li><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Fearless Concurrency</a></li><li><ol class="section"><li><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Is Rust an Object-Oriented Programming Language?</a></li><li><ol class="section"><li><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> What Does Object-Oriented Mean?</a></li><li><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Trait Objects for Using Values of Different Types</a></li><li><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Object-Oriented Design Pattern Implementations</a></li></ol></li><li><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Patterns Match the Structure of Values</a></li><li><ol class="section"><li><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Refutability: Whether a Pattern Might Fail to Match</a></li><li><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Advanced Features</a></li><li><ol class="section"><li><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li><a href="ch19-02-advanced-lifetimes.html"><strong aria-hidden="true">19.2.</strong> Advanced Lifetimes</a></li><li><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> Advanced Traits</a></li><li><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> Advanced Types</a></li><li><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions &amp; Closures</a></li></ol></li><li><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Final Project: Building a Multithreaded Web Server</a></li><li><ol class="section"><li><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> A Single Threaded Web Server</a></li><li><a href="ch20-02-slow-requests.html"><strong aria-hidden="true">20.2.</strong> How Slow Requests Affect Throughput</a></li><li><a href="ch20-03-designing-the-interface.html"><strong aria-hidden="true">20.3.</strong> Designing the Thread Pool Interface</a></li><li><a href="ch20-04-storing-threads.html"><strong aria-hidden="true">20.4.</strong> Creating the Thread Pool and Storing Threads</a></li><li><a href="ch20-05-sending-requests-via-channels.html"><strong aria-hidden="true">20.5.</strong> Sending Requests to Threads Via Channels</a></li><li><a href="ch20-06-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.6.</strong> Graceful Shutdown and Cleanup</a></li></ol></li><li><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Appendix</a></li><li><ol class="section"><li><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Keywords</a></li><li><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - Operators</a></li></ol></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">The Rust Programming Language</h1> 
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="ch13-01-closures.html#aЗамыкания-анонимные-функции-которые-могут-имеют-доступ-к-своему-окружению" id="aЗамыкания-анонимные-функции-которые-могут-имеют-доступ-к-своему-окружению"><h2>Замыкания: анонимные функции, которые могут имеют доступ к своему окружению</h2></a>
+<!-- Bill's suggested we flesh out some of these subtitles, which I think we
+did more with earlier chapters but we (I, included!) have got a bit lax with. I
+don't think this is quite right, is there a shorter heading we could use to
+capture what a closure is/is for? -->
+<!-- I've attempted a more descriptive subtitle, what do you think? /Carol -->
+<p>Замыкания в Rust - это анонимные функции, ссылки на которые вы можете сохранять в
+переменные или сделать их аргументами других функций. Вы можете создавать в одном
+месте, а вызывать и их работы в другом контексте. В отличии от функций, замыканиям
+дозволено иметь доступ к переменным той области видимости, в которой они используются.
+Далее будут продемонстрировано, как эти опции помогают сократить количество используемого
+кода в программе и улучшить её поведение.</p>
+<!-- Can you say what sets closures apart from functions, explicitly, above? I
+can't see it clearly enough to be confident, after one read through this
+chapter. I think it would help to have the closure definition up front, to help
+to let the reader know what they are looking out for in the examples. When
+would you use a closure, for example, rather than using a function? And is it
+the closure that's stored in the variable, or is it the result of applying the
+closure to a value passed as an argument? -->
+<!-- I've tried reworking the above paragraph and restructuring the examples to
+be more motivating. I've also tried to make it clear throughout that storing a
+closure is storing the *unevaluated* code, and then you call the closure in
+order to get the result. /Carol -->
+<a class="header" href="ch13-01-closures.html#aСоздание-обобщенного-поведения-используя-замыкания" id="aСоздание-обобщенного-поведения-используя-замыкания"><h3>Создание обобщенного поведения используя замыкания</h3></a>
+<p>Рассмотрим пример, демонстрирующий сохранение замыкания для дальнейшего использования.
+Мы также рассмотрим синтаксис замыканий, типизированный интерфейс и типажи.</p>
+<p>Представим, что мы работаем на в стартапе, где создаём приложение для генерации
+планов тренировок. Серверная часть приложения создаётся на Rust. На сервере храниться
+множество данных: возраст, индекс тела, предпочтения, последние результаты тренировок
+и индекс интенсивности тренировок. При проектировании приложения конкретные алгоритмы
+реализаций не важны. Важно, чтобы различные расчёты не занимали много времени.
+Мы буде симулировать работу алгоритма расчета параметров с помощью функции
+<code>simulated_expensive_calculation</code> (13-1), которая печатает <code>calculating slowly...</code>,
+ждёт две секунды и выводит результат расчёта:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+use std::thread;
+use std::time::Duration;
+
+fn simulated_expensive_calculation(intensity: i32) -&gt; i32 {
+    println!(&quot;calculating slowly...&quot;);
+    thread::sleep(Duration::from_secs(2));
+    intensity
+}
+#}</code></pre></pre>
+<p><span class="caption">Код программы 13-1: Описания функции, которая моделирует
+расчёт различных параметров</span></p>
+<p>Далее рассмотрим содержание функции <code>main</code>, которое содержит части нашего приложения.
+В примере моделируется вызов кода, который генерирует план занятий. Т.к. взаимодействие
+с клиентской частью программы не связано с использованием замыканий, мы также
+смоделируем это взаимодействие. Программно будут вводиться данные и печататься результаты.</p>
+<p>Описание входных данных:</p>
+<ul>
+<li>Индекс интенсивности (<code>intensity</code>) - определяет когда запрашивается тренировка.
+Этот индекс говорит о предпочтениях (низкая или высокая интенсивность)</li>
+<li>Случайный номер, который будет сгенерирован для выбора плана тренировки</li>
+</ul>
+<p>В результате программа напечатает рекомендованный план занятий.</p>
+<p>Код 13-2 показывает содержание функции <code>main</code>. Мы программно ввели вводимые пользователем
+показатели для простоты демонстрации работы:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">fn main() {
+    let simulated_user_specified_value = 10;
+    let simulated_random_number = 7;
+
+    generate_workout(simulated_user_specified_value, simulated_random_number);
+}
+# fn generate_workout(intensity: i32, random_number: i32) {}
+</code></pre></pre>
+<p><span class="caption">Код программы 13-2: Функция <code>main</code> содержащая симуляцию
+пользовательского ввода данных и вызов функции <code>generate_workout</code></span></p>
+<p>Это и есть контекст в котором мы будем работать. Функция <code>generate_workout</code> в
+примере кода 13-3 содержит логику работу программы, которую мы будем изучать в
+этом примере.</p>
+<p>contains the business logic of the app that we’re most concerned
+with in this example. Остальные изменения в коде будут сделаны в этой функции:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+# use std::thread;
+# use std::time::Duration;
+#
+# fn simulated_expensive_calculation(num: i32) -&gt; i32 {
+#     println!(&quot;calculating slowly...&quot;);
+#     thread::sleep(Duration::from_secs(2));
+#     num
+# }
+#
+fn generate_workout(intensity: i32, random_number: i32) {
+    if intensity &lt; 25 {
+        println!(
+            &quot;Today, do {} pushups!&quot;,
+            simulated_expensive_calculation(intensity)
+        );
+        println!(
+            &quot;Next, do {} situps!&quot;,
+            simulated_expensive_calculation(intensity)
+        );
+    } else {
+        if random_number == 3 {
+            println!(&quot;Take a break today! Remember to stay hydrated!&quot;);
+        } else {
+            println!(
+                &quot;Today, run for {} minutes!&quot;,
+                simulated_expensive_calculation(intensity)
+            )
+        }
+    }
+}
+#}</code></pre></pre>
+<p><span class="caption">Код программы 13-3: Печать плана тренировки зависит от введенных
+данных и вызова функции <code>simulated_expensive_calculation</code> </span></p>
+<p>Код 13-3 несколько раз вызывает функцию расчета.</p>
+<!-- Will add wingdings in libreoffice /Carol -->
+<p>Желаемое поведение функции <code>generate_workout</code> следующее: проверка хочет ли
+пользователь низкой интенсивности тренировки (индекс меньше 25) или высокой (25 и более).
+Невысокая интенсивность будет рекомендовать количество повторений и подходов на
+основании сложного алгоритма, который мы моделируем функцией <code>simulated_expensive_calculation</code>.</p>
+<p>Если же пользователь хочет высокую интенсивность тренировок - добавляется опция -
+случайный образом выбираемое число. Если оно равно 3, то предлагается сделать перерыв.</p>
+<p>Общая логика представлена. Теперь можно заняться рефакторингом кода. Для начала
+устраним дублирование кода. Пример первого приближения 13-4:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+# use std::thread;
+# use std::time::Duration;
+#
+# fn simulated_expensive_calculation(num: i32) -&gt; i32 {
+#     println!(&quot;calculating slowly...&quot;);
+#     thread::sleep(Duration::from_secs(2));
+#     num
+# }
+#
+fn generate_workout(intensity: i32, random_number: i32) {
+    let expensive_result =
+        simulated_expensive_calculation(intensity);
+
+    if intensity &lt; 25 {
+        println!(
+            &quot;Today, do {} pushups!&quot;,
+            expensive_result
+        );
+        println!(
+            &quot;Next, do {} situps!&quot;,
+            expensive_result
+        );
+    } else {
+        if random_number == 3 {
+            println!(&quot;Take a break today! Remember to stay hydrated!&quot;);
+        } else {
+            println!(
+                &quot;Today, run for {} minutes!&quot;,
+                expensive_result
+            )
+        }
+    }
+}
+#}</code></pre></pre>
+<p><span class="caption">Код программы 13-4: Перенос вызова функции
+<code>simulated_expensive_calculation</code> в одно место перед блоком <code>if</code> и сохранение
+результата в переменную <code>expensive_result</code></span></p>
+<!-- Will add ghosting and wingdings in libreoffice /Carol -->
+<p>Теперь  в любом случае данная функция вызывается. Это не хорошо, т.к. не весь код
+метода использует результаты её работы. Для решения этой задачи замыкания подходят
+лучше всего.</p>
+<a class="header" href="ch13-01-closures.html#aЗамыкания-сохраняю-код-который-может-быть-запущен-позднее" id="aЗамыкания-сохраняю-код-который-может-быть-запущен-позднее"><h3>Замыкания сохраняю код, который может быть запущен позднее</h3></a>
+<p>Вместо того, чтобы всегда запускать функцию <code>simulated_expensive_calculation</code>
+перед блоком <code>if</code>, мы может определить замыкание и сохранить его в переменную.
+Пример 13-5:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+# use std::thread;
+# use std::time::Duration;
+#
+let expensive_closure = |num| {
+    println!(&quot;calculating slowly...&quot;);
+    thread::sleep(Duration::from_secs(2));
+    num
+};
+# expensive_closure(5);
+#}</code></pre></pre>
+<p><span class="caption">Код программы 13-5: Инициализация замыкания</span></p>
+<!-- Can you elaborate on *how* to define the closure first? I've had a go here
+based on what I can see but not sure it's correct. Are we saying that a closure
+is function that assigned its result to a variable you can then use? -->
+<!-- I've attempted to elaborate on defining a closure in the next few
+paragraphs starting here, is this better? /Carol -->
+<p>Определения замыкания мы начинаем с пары палочек (vertical pipes (<code>|</code>)). Внутри
+этой конструкции мы определяем параметры замыкания. Такой синтаксис был выбран
+под влиянием языков Ruby и Smalltalk. Замыкание имеет параметр <code>num</code>. Несколько
+параметров разделяются запятыми <code>|param1, param2|</code>.</p>
+<p>Далее идёт тело функции-замыкания. Фигурные скобки могут не использоваться, если
+код функции состоит только из одной строчки кода. После закрытия фигурных скобок
+необходим символ <code>;</code>. Обратите внимание, что после <code>num</code> нет <code>;</code>. Это означает, что
+переменная будет возращена функцией.</p>
+<p>Также обратите внимание, что <code>let</code>-переменная <code>expensive_closure</code>содержит
+определение функции-замыкания, а не результат её работы.</p>
+<p>Теперь, после определения замыкания мы можем изменить код в блоках <code>if</code>, вызывая
+код замыкания по необходимости. Вызов функции-замыкания очень напоминает вызов
+функции.</p>
+<p>Вызов замыкания очень похож на вызов функции. Мы определяем имя переменной, которая
+содержит определение замыкания и в скобках указываем аргументы, которые мы хотим
+использовать для вызова. Пример 13-6:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+# use std::thread;
+# use std::time::Duration;
+#
+fn generate_workout(intensity: i32, random_number: i32) {
+    let expensive_closure = |num| {
+        println!(&quot;calculating slowly...&quot;);
+        thread::sleep(Duration::from_secs(2));
+        num
+    };
+
+    if intensity &lt; 25 {
+        println!(
+            &quot;Today, do {} pushups!&quot;,
+            expensive_closure(intensity)
+        );
+        println!(
+            &quot;Next, do {} situps!&quot;,
+            expensive_closure(intensity)
+        );
+    } else {
+        if random_number == 3 {
+            println!(&quot;Take a break today! Remember to stay hydrated!&quot;);
+        } else {
+            println!(
+                &quot;Today, run for {} minutes!&quot;,
+                expensive_closure(intensity)
+            )
+        }
+    }
+}
+#}</code></pre></pre>
+<p><span class="caption">Пример 13-6: Вызов замыкания <code>expensive_closure</code></span></p>
+<p>Мы решили задачу многократного использования (вызова) одного кода (т.е. кода
+объявленного в одном месте). Но мы всё-таки не решили вопрос минимизации количества
+вызываемого код (кэширования результата). Код по-прежнему может вызываться дважды.
+Этот вопрос может решить локальная переменная, объявленная в блоке <code>if</code>.  Есть ещё
+более лучшее решение, к которому мы вернемся чуть позже. А сейчас обсудим почему
+у замыканий не может быть аннотаций типов и ещё кое-что о связях типажей и замыканий.</p>
+<a class="header" href="ch13-01-closures.html#aИнтерфейс-типа-замыкания-и-аннотация-closure-type-inference-and-annotation" id="aИнтерфейс-типа-замыкания-и-аннотация-closure-type-inference-and-annotation"><h3>Интерфейс типа замыкания и аннотация (Closure Type Inference and Annotation)</h3></a>
+<p>Замыкания отличаются от функций определяемых с помощью ключевого слова <code>fn</code> в некоторых
+аспектах. Замыкания не требуют аннотирования типов параметров или возвращаемого
+значения как это могут делать функции <code>fn</code>.</p>
+<!-- I've suggested moving this next paragraph up from below, I found this
+section difficult to follow with this next paragraph -->
+<p>Типизированные аннотации необходимы функциям т.к. они являются частью проявленного
+интерфейса с пользователем. Определение этого интерфейса важно для уверенности в
+том, что все использующие данную функцию принимают её входные и выходные данные
+корректно. Замыкания же не используют явного интерфейса, хотя они сохраняются в
+переменных и используются без имени и давая возможность запускать их на выполнение.</p>
+<p>Кроме того, описание замыкания может быть более коротким и может быть использовано
+только в узком контексте, а не в любом месте программы. Из-за ограничения контекстов,
+Благодаря этого ограничению компилятор может правильно подбирать типы данных
+параметров и возвращаемого типа.</p>
+<!--Can you expand above on what you mean by "stored in bindings and called
+directly"? Do you mean stored in a variable? I'm struggling to visualize how
+closures are used, and what the important difference is between them and
+functions. I think a clearer definition of what they are, what they do, and
+what they're used for at the start of the closures section would help clear
+this up -->
+<!-- Yes, sorry, in Rust terminology "binding" is mostly synonymous to
+"variable", but when we started working on the book we decided to be consistent
+and more like what people are used to by referring to the concept as "variable"
+throughout, but we missed this spot. /Carol -->
+<p>Также как и при определении переменных, мы можем добавить описание типа данных
+переменных замыкания и типа возвращаемого значения (для большей информативности).
+Пример 13-7:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+# use std::thread;
+# use std::time::Duration;
+#
+let expensive_closure = |num: i32| -&gt; i32 {
+    println!(&quot;calculating slowly...&quot;);
+    thread::sleep(Duration::from_secs(2));
+    num
+};
+#}</code></pre></pre>
+<p><span class="caption">Код 13-7: добавления описания типов данных замыкания</span></p>
+<!-- Why might you want to, if you don't need to? In a particular situation? -->
+<!-- I've added an explanation /Carol -->
+<!-- Below -- Am I right in assuming the closures below are doing the same
+thing as the functions? -->
+<!-- Yes /Carol -->
+<p>Синтаксическое сравнения описания замыкания и функции:</p>
+<!-- Prod: can you align this as shown in the text? -->
+<!-- I'm confused, does this note mean that production *won't* be aligning all
+of our other code examples as shown in the text? That's concerning to me, we're
+trying to illustrate idiomatic Rust style in all the code examples, so our
+alignment is always intentional... /Carol -->
+<pre><code class="language-rust ignore">fn  add_one_v1   (x: i32) -&gt; i32 { x + 1 }
+let add_one_v2 = |x: i32| -&gt; i32 { x + 1 };
+let add_one_v3 = |x|             { x + 1 };
+let add_one_v4 = |x|               x + 1  ;
+</code></pre>
+<!-- Can you point out where we're looking at here, where the important
+differences lie? -->
+<!-- The importance isn't the difference but the similarity... I've tried to
+clarify /Carol -->
+<!-- Will add wingdings and ghosting in libreoffice /Carol -->
+<p>Проиллюстрированные описания замыканий развноценны.</p>
+<!--Below--I'm not sure I'm following, is the i8 type being inferred? It seems
+like we're annotating it. -->
+<!-- The types in the function definitions are being inferred, but since Rust's
+variable types for numbers defaults to `i32`, in order to illustrate our point
+here we're forcing the type of the *variable* to be `i8` by annotating it in
+the *variable* declaration. I've changed the example to hopefully be less
+confusing and convey our point better. /Carol -->
+<p>Определения замыканий будут иметь один конкретный тип данных для каждого из параметров
+и выходных данных. Например (код 13-8) показывает определение замыкания и его
+использование:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><code class="language-rust ignore">let example_closure = |x| x;
+
+let s = example_closure(String::from(&quot;hello&quot;));
+let n = example_closure(5);
+</code></pre>
+<p><span class="caption">Код 13-8: Попытка использовать замыкание с различными типами
+данных</span></p>
+<p>The compiler gives us this error:</p>
+<pre><code class="language-text">error[E0308]: mismatched types
+ --&gt; src/main.rs
+  |
+  | let n = example_closure(5);
+  |                         ^ expected struct `std::string::String`, found
+  integral variable
+  |
+  = note: expected type `std::string::String`
+             found type `{integer}`
+</code></pre>
+<!-- Will add wingdings in libreoffice /Carol -->
+<p>После того, как вы в первый раз вызвали замыкание и использовали переменные типа
+данных <code>String</code>, компилятор неявным образом подставит этот тип в замыкание. Этот
+тип данных будет неизменным у замыкания на протяжении всего времени жизни.</p>
+<a class="header" href="ch13-01-closures.html#aИспользование-замыканий-совместно-с-обобщёнными-типами-дженериками-и-типажом-fn" id="aИспользование-замыканий-совместно-с-обобщёнными-типами-дженериками-и-типажом-fn"><h3>Использование замыканий совместно с обобщёнными типами (дженериками) и типажом <code>Fn</code></h3></a>
+<p>Возвратимся к нашему приложению для генерации тренировочных программ. В коде 13-6
+мы ещё используем неоднократно замыкание. Больше чем это на надо. Решение с кэшированием
+данных вычислений в переменной увеличит и усложнит наш код.</p>
+<p>Есть ещё одно решение. Мы можем создать структуру, которая будет хранить замыкание
+и результат её работы. Структура выполнить код замыкания если только в этом будет
+необходимость. Данная структура будет кэшировать результат работы замыкания,
+благодаря чему в коде программы не будет необходимости в усложнении кода. Такое
+шаблонное решение называется <em>запоминанием</em> (<em>memoization</em>) или <em>ленивой инициализацией</em>
+(<em>lazy evaluation</em>).</p>
+<p>Для того чтобы структура могла в качестве поля иметь замыкание, мы должны явным
+образом указать его тип. Каждое замыкание имеет свой уникальный тип (даже если два
+замыкания имеют одни и туже сигнатуру, их типы будут считаться различными). Для
+установки типа данных замыкания в структуре, перечислении или функции мы должны
+использовать обобщающие типы и определенные типажи.</p>
+<!-- So Fn is a trait built into the language, is that right? I wasn't sure if
+it was just a placeholder here -->
+<!-- Fn is provided by the standard library; I've clarified here. /Carol -->
+<p>Типаж <code>Fn</code> входит в состав стандартной библиотеки. Все замыкания реализуют один из
+типажей: <code>Fn</code>, <code>FnMut</code> или <code>FnOnce</code>. Мы поговорим о различиях между ним в следующей
+секции. В данном примере мы можем использовать типаж <code>Fn</code>.</p>
+<p>Мы добавим типы в типаж <code>Fn</code> для описания типов параметров и возвращаемого значения,
+которое замыкания должны иметь для того, чтобы соответствовать данному типажу. В данном
+случае, наше замыкание имеет тип параметр <code>i32</code> и возвращает <code>i32</code>. Сигнатура типажа
+имеет вид: <code>Fn(i32) -&gt; i32</code>.</p>
+<p>Код 13-9 показывает определение структуры <code>Cacher</code> содержащей замыкание:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+struct Cacher&lt;T&gt;
+    where T: Fn(i32) -&gt; i32
+{
+    calculation: T,
+    value: Option&lt;i32&gt;,
+}
+#}</code></pre></pre>
+<p><span class="caption">Код 13-9: определение структуры <code>Cacher</code> содержащей замыкание
+<code>calculation</code> и результат в <code>value</code></span></p>
+<p>Структура <code>Cacher</code> имеет поле <code>calculation</code> типа <code>T</code>. Тип данных замыкания <code>T</code>
+описывается сигнатурой типажа <code>Fn</code>. Любые замыкания, которые может содержать поле
+<code>calculation</code> в экземпляре <code>Cacher</code> должно иметь один параметр типа <code>i32</code> и возвращать
+<code>i32</code> (определено после <code>-&gt;</code>).</p>
+<p>Поле <code>value</code> имеет тип <code>Option&lt;i32&gt;</code>. Перед выполнением замыкания <code>value</code> будет <code>None</code>.
+Если код использует структуру <code>Cacher</code> хочет получить результат замыкания, мы
+выполним замыкания и сохраним результат в значении перечисления <code>Some</code>. Если же код
+программы запросит значение замыкания ещё раз будет возвращено значение из <code>Some</code>.</p>
+<p>Описанная логика реализована в примере кода 13-10:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+# struct Cacher&lt;T&gt;
+#     where T: Fn(i32) -&gt; i32
+# {
+#     calculation: T,
+#     value: Option&lt;i32&gt;,
+# }
+#
+impl&lt;T&gt; Cacher&lt;T&gt;
+    where T: Fn(i32) -&gt; i32
+{
+    fn new(calculation: T) -&gt; Cacher&lt;T&gt; {
+        Cacher {
+            calculation,
+            value: None,
+        }
+    }
+
+    fn value(&amp;mut self, arg: i32) -&gt; i32 {
+        match self.value {
+            Some(v) =&gt; v,
+            None =&gt; {
+                let v = (self.calculation)(arg);
+                self.value = Some(v);
+                v
+            },
+        }
+    }
+}
+#}</code></pre></pre>
+<!-- Liz: the `new` function is using the "struct init shorthand" by just
+saying `calculation` instead of `calculation: calculation`, since the parameter
+matches the struct field name. This was recently added to stable Rust and we've
+added an introduction of it in Chapter 5. Just adding an explanation here for
+you in case you read this chapter before the changes we've made to Chapter 5!
+/Carol -->
+<p><span class="caption">Код 13-10: Реализация структуры <code>Cacher</code>, метода <code>new</code> и
+метода <code>value</code>, который управляет логикой кэширования</span></p>
+<p>Поля структуры <code>Cacher</code> закрытые, т.к. мы хотим, чтобы экземпляр структуры управлял
+содержание полей и не было возможности извне каким-либо образом на это влиять. Функция
+<code>Cacher::new</code> получает обобщенный параметр <code>T</code>. Данная функция возвращает экземпляр
+структуры <code>Cacher</code> содержащая замыкание в поле <code>calculation</code> и <code>None</code> в поле <code>value</code>.</p>
+<p>Когда вызывающий код хочет получить результат работы замыкания, вместо того чтобы
+вызывать замыкание непосредственно, он вызывает метод <code>value</code>. Этот метод проверяет
+есть ли уже результат работы замыкания в поле <code>self.value</code> внутри значения перечисления
+<code>Option::Some</code>. Если там есть значение, это значение возвращается вызывающему коду.
+При этом замыкание больше не используется для получения результата.</p>
+<p>Если же поле <code>self.value</code> имеет значение <code>None</code>, то вызывается замыкание из поля
+<code>self.calculation</code> и результат работы записывается в поле <code>self.value</code> для будущего
+использования и, далее, полученное значение также возвращается вызывающему коду.</p>
+<p>Пример кода 13-11 демонстрирует использование структуры <code>Cacher</code> в функции
+<code>generate_workout</code> из примера 13-6:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+# use std::thread;
+# use std::time::Duration;
+#
+# struct Cacher&lt;T&gt;
+#     where T: Fn(i32) -&gt; i32
+# {
+#     calculation: T,
+#     value: Option&lt;i32&gt;,
+# }
+#
+# impl&lt;T&gt; Cacher&lt;T&gt;
+#     where T: Fn(i32) -&gt; i32
+# {
+#     fn new(calculation: T) -&gt; Cacher&lt;T&gt; {
+#         Cacher {
+#             calculation,
+#             value: None,
+#         }
+#     }
+#
+#     fn value(&amp;mut self, arg: i32) -&gt; i32 {
+#         match self.value {
+#             Some(v) =&gt; v,
+#             None =&gt; {
+#                 let v = (self.calculation)(arg);
+#                 self.value = Some(v);
+#                 v
+#             },
+#         }
+#     }
+# }
+#
+fn generate_workout(intensity: i32, random_number: i32) {
+    let mut expensive_result = Cacher::new(|num| {
+        println!(&quot;calculating slowly...&quot;);
+        thread::sleep(Duration::from_secs(2));
+        num
+    });
+
+    if intensity &lt; 25 {
+        println!(
+            &quot;Today, do {} pushups!&quot;,
+            expensive_result.value(intensity)
+        );
+        println!(
+            &quot;Next, do {} situps!&quot;,
+            expensive_result.value(intensity)
+        );
+    } else {
+        if random_number == 3 {
+            println!(&quot;Take a break today! Remember to stay hydrated!&quot;);
+        } else {
+            println!(
+                &quot;Today, run for {} minutes!&quot;,
+                expensive_result.value(intensity)
+            )
+        }
+    }
+}
+#}</code></pre></pre>
+<p><span class="caption">Код 13-11: Использование экземпляра структуры <code>Cacher</code> в
+функции <code>generate_workout</code> для реализации кэширования</span></p>
+<!-- Will add ghosting and wingdings in libreoffice /Carol -->
+<p>Вместо сохранения замыкания в переменную, мы создаём новый экземпляр структуры
+<code>Cacher</code> для хранения замыкания. Далее, в каждом месте, где необходим результат
+работы замыкания мы вызываем метод <code>value</code>. Мы может вызывать этот метод сколько
+угодно или вообще не вызывать. При любом количестве вызовов функции <code>value</code> (один
+раз или более) замыкание будет использовано только один раз. Пожалуйста, проверьте
+работу кода с использованием функции <code>main</code>.</p>
+<p>Хотя экземпляр структуры <code>Cacher</code> прекрасно справляется со своими обязанностями
+и в функции <code>generate_workout</code> можно без каких-либо дополнительных затрат описать
+логику работы, у текущей реализации <code>Cacher</code> есть всё же ограничения с контекстом
+использования замыкания.</p>
+<p>Первое ограничение - предполагается, что параметр <code>arg</code> всегда будет одинаковым.
+Изменение этого условия приводит к ошибке:</p>
+<pre><code class="language-rust ignore">#[test]
+fn call_with_different_values() {
+    let mut c = Cacher::new(|a| a);
+
+    let v1 = c.value(1);
+    let v2 = c.value(2);
+
+    assert_eq!(v2, 2);
+}
+</code></pre>
+<p>Этот тест создаёт новый экземпляр <code>Cacher</code> с замыканием и возвращает значение.
+Мы вызываем метод <code>value</code> с параметром <code>arg</code> со значением <code>1</code>, а потом с <code>2</code>.
+Предполагаем, что когда мы введём значение <code>2</code>, то и должны получить это значение.</p>
+<p>Тест не будет пройден:</p>
+<pre><code class="language-text">thread 'call_with_different_arg_values' panicked at 'assertion failed:
+`(left == right)` (left: `1`, right: `2`)', src/main.rs
+</code></pre>
+<p>Проблема в том, что при первом вызове <code>c.value</code> с аргументом 1 экземпляр <code>Cacher</code>
+сохранит значение <code>Some(1)</code> в <code>self.value</code>. После этого, неважно какие будут входные
+параметры. Функция всегда будет возвращать 1.</p>
+<p>Решением будет использования хэш-таблицы вместо одного значения. Ключи будут значениями
+входных данных <code>arg</code>, а значениями будут результаты работы замыкания. Вместо того,
+чтобы изучения значений перечислений функция <code>value</code> должна произвести поиск в
+хэш-таблице и возвратить значение, если оно там находится. При необходимости будет
+вызван код замыкания и будут произведены соответствующие вычисления.</p>
+<pre><code class="language-rust ignore">fn value(&amp;mut self, arg: i32) -&gt; i32 {
+        match self.value.get(&amp;arg) {
+            Some(&amp;v) =&gt; v,
+            None =&gt; {
+                let v = (self.calculation)(arg);
+                self.value.insert(arg,v);
+                v
+            },
+        }
+}
+</code></pre>
+<p>Ещё одним ограничением является тип данных. На данным момент ими могут быть
+только целочисленные значения типа <code>i32</code>. Мы бы хотели иметь возможность использовать
+различные типы данных (срезы строки, <code>usize</code> и другие). Попытаемся решить этот
+вопросы с использованием обобщенных параметров.</p>
+<a class="header" href="ch13-01-closures.html#aЗамыкания-могут-получать-доступ-переменным-области-видимости" id="aЗамыкания-могут-получать-доступ-переменным-области-видимости"><h3>Замыкания могут получать доступ переменным области видимости</h3></a>
+<p>В рассматриваемом нами примере генератора учебных планов мы использовали замыкания
+только как встроенные анонимные функции. Возможности же замыкание шире.</p>
+<!-- To clarify, by enclosing scope, do you mean the scope that the closure is
+inside? Can you expand on that?-->
+<!-- Yes, I've tried here to clarify that it's the scope in which the closure
+is defined /Carol -->
+<p>Код 13-12 демонстрирует пример переменной замыкания <code>equal_to_x</code>, содержание которой
+использует переменные в облсти видимости (переменная <code>x</code>):</p>
+<!-- To clarify how we talk about a closure, does the closure include the
+variable name, or are we referring to the closure as the functionality that is
+on the right side of the = and so not including to variable name? I thought it
+was the former, but it seems like the latter above. If it's the former, would
+"an example of a closure with the variable `equal_to_x`" make more sense? -->
+<!-- No, the closure does not include the variable name in which it's stored;
+storing a closure in a variable is optional. It should always be the latter,
+and I hope the reworking of the example used throughout the closure section
+and making the wording consistent has cleared this confusion up by this point.
+/Carol -->
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">fn main() {
+    let x = 4;
+
+    let equal_to_x = |z| z == x;
+
+    let y = 4;
+
+    assert!(equal_to_x(y));
+    println!(&quot;{}&quot;,equal_to_x(y));
+}
+</code></pre></pre>
+<p><span class="caption">Код 13-12: пример замыкания, которое использует внешнюю
+переменную</span></p>
+<p>В этом примере показано, что замыканию позволена использовать переменную <code>x</code>,
+которая определена в той же области видимости, что и переменная <code>equal_to_x</code>.</p>
+<!-- So *why* is this allowed with closures and not functions, what about
+closures makes this safe? -->
+<!-- It's not really about safety; capturing the environment is the defining
+functionality a closure has. The reason functions *don't* capture their
+environment is mostly around storage overhead; I've added an explanation of
+that aspect. Can you elaborate on what led to the conclusion that allowing
+captures with functions wouldn't be safe and what you mean by "safe" here?
+/Carol -->
+<p>Такой функциональной возможности функции не имеют:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><code class="language-rust ignore">fn main() {
+    let x = 4;
+
+    fn equal_to_x(z: i32) -&gt; bool { z == x }
+
+    let y = 4;
+
+    assert!(equal_to_x(y));
+}
+</code></pre>
+<p>Описание ошибки:</p>
+<pre><code class="language-text">error[E0434]: can't capture dynamic environment in a fn item; use the || { ... }
+closure form instead
+ --&gt;
+  |
+4 |     fn equal_to_x(z: i32) -&gt; bool { z == x }
+  |                                          ^
+</code></pre>
+<p>Рассмотрим внутреннюю организацию работы с внешними переменными у замыканий. Для
+хранения данных о внешних переменных у замыканий предусмотрена хранилище (кэш).
+Использование данной возможности накладывает дополнительную нагрузку на ресурсы
+системы (память). Для большей безопасности и устойчивой работы системы было принято
+решение отключить у функций такою возможность.</p>
+<!-- Why didn't this work, is there a reason ingrained in the language? Or is
+that not really relevant? -->
+<!-- I've added an explanation /Carol -->
+<p>Замыкания могут получить доступ к переменным среды выполнения несколькими (тремя)
+способами (которые соответствуют возможностям функций при работе с своими аргументами):
+владение, заимствование, изменяемое (нефиксированное) заимствование. Все эти возможности
+описаны в типажах, которые замыкания могут следовать:</p>
+<ul>
+<li><code>FnOnce</code> получает значения из области видимости (<em>environment</em>). Для получения
+доступа к переменным замыкание должно получить во владения используемые переменные.
+Замыкание не может получить во владение одну и туже переменную несколько раз.</li>
+<li><code>Fn</code> заимствует значения из среды (не изменяя при этом их значений).</li>
+<li><code>FnMut</code> может изменять значения переменных.</li>
+</ul>
+<p>Когда мы создаём замыкание, компилятор делает выводы о целях использования переменных
+среды на основании используемых значений. В примере 13-12 <code>equal_to_x</code> получает
+доступ к  <code>x</code> (readonly), т.е. замыкания реализует <code>Fn</code>.</p>
+<p>Для получения владения переменными используется ключевое слово <code>move</code> перед списком
+параметров. Это удобно, когда замакание перемещается в другой поток. Мы рассмотрим
+примеры использования <code>move</code> в Главе 16, когда будем рассматривать возможности Rust
+для разработки многопоточных приложений. В примере 13-12 ключевое слово <code>move</code> добавлено
+в определении замыкания и используется вектор вместо целочисленного значения.
+Примитивные типы (как мы знаем) могут быть скопированы (а нам надо перемещать):</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><code class="language-rust ignore">fn main() {
+    let x = vec![1, 2, 3];
+
+    let equal_to_x = move |z| z == x;
+
+    println!(&quot;can't use x here: {:?}&quot;, x);
+
+    let y = vec![1, 2, 3];
+
+    assert!(equal_to_x(y));
+}
+</code></pre>
+<p>Описание ошибки:</p>
+<pre><code class="language-text">error[E0382]: use of moved value: `x`
+ --&gt; src/main.rs:6:40
+  |
+4 |     let equal_to_x = move |z| z == x;
+  |                      -------- value moved (into closure) here
+5 |
+6 |     println!(&quot;can't use x here: {:?}&quot;, x);
+  |                                        ^ value used here after move
+  |
+  = note: move occurs because `x` has type `std::vec::Vec&lt;i32&gt;`, which does not
+    implement the `Copy` trait
+</code></pre>
+<p>Здесь переменная <code>x</code> перемещена в замыкание её определении. Поэтому в функции
+<code>main</code> переменная <code>x</code> большое не может быть использована. Для устранения ошибки
+компиляции, устраните эту ошибку (например, удалите строку 6).</p>
+<p>В большинстве случаев типаж <code>Fn</code> будет использован. Компилятор сам вам сообщит,
+когда лучшем решение было бы использовать <code>FnMut</code> или <code>FnOnce</code> (на основании использования
+внешних переменных замыканием).</p>
+<p>Иллюстрации использования замыканий в качестве параметров функции мы рассмотрим в
+следующей секции, &quot;Итераторы&quot;.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="ch13-00-functional-features.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="ch13-02-iterators.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="ch13-00-functional-features.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="ch13-02-iterators.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+
+        
+        <script src="searchindex.js" type="text/javascript" charset="utf-8"></script>
+        
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+    </body>
+</html>

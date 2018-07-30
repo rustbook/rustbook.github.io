@@ -1,0 +1,446 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Cargo Workspaces - The Rust Programming Language</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="_FontAwesome/css/font-awesome.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+
+    </head>
+    <body class="light">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="ch01-00-introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li></ol></li><li><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Guessing Game Tutorial</a></li><li><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Common Programming Concepts</a></li><li><ol class="section"><li><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Variables and Mutability</a></li><li><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Data Types</a></li><li><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> How Functions Work</a></li><li><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Comments</a></li><li><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Control Flow</a></li></ol></li><li><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Understanding Ownership</a></li><li><ol class="section"><li><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> What is Ownership?</a></li><li><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> References &amp; Borrowing</a></li><li><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Slices</a></li></ol></li><li><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Using Structs to Structure Related Data</a></li><li><ol class="section"><li><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Defining and Instantiating Structs</a></li><li><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> An Example Program Using Structs</a></li><li><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Method Syntax</a></li></ol></li><li><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enums and Pattern Matching</a></li><li><ol class="section"><li><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Defining an Enum</a></li><li><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> The match Control Flow Operator</a></li><li><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Concise Control Flow with if let</a></li></ol></li><li><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> Modules</a></li><li><ol class="section"><li><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> mod and the Filesystem</a></li><li><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> Controlling Visibility with pub</a></li><li><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> Importing Names with use</a></li></ol></li><li><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Error Handling</a></li><li><ol class="section"><li><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Unrecoverable Errors with panic!</a></li><li><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Recoverable Errors with Result</a></li><li><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> To panic! or Not To panic!</a></li></ol></li><li><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Generic Types, Traits, and Lifetimes</a></li><li><ol class="section"><li><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Generic Data Types</a></li><li><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Traits: Defining Shared Behavior</a></li><li><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Validating References with Lifetimes</a></li></ol></li><li><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Testing</a></li><li><ol class="section"><li><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Writing tests</a></li><li><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Running tests</a></li><li><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Test Organization</a></li></ol></li><li><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> An I/O Project: Building a Command Line Program</a></li><li><ol class="section"><li><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Accepting Command Line Arguments</a></li><li><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Reading a File</a></li><li><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Refactoring to Improve Modularity and Error Handling</a></li><li><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Developing the Library’s Functionality with Test Driven Development</a></li><li><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Working with Environment Variables</a></li><li><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Writing Error Messages to Standard Error Instead of Standard Output</a></li></ol></li><li><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Functional Language Features in Rust</a></li><li><ol class="section"><li><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Closures</a></li><li><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Iterators</a></li><li><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Improving our I/O Project</a></li><li><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Performance</a></li></ol></li><li><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> More about Cargo and Crates.io</a></li><li><ol class="section"><li><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Customizing Builds with Release Profiles</a></li><li><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Publishing a Crate to Crates.io</a></li><li><a href="ch14-03-cargo-workspaces.html" class="active"><strong aria-hidden="true">14.3.</strong> Cargo Workspaces</a></li><li><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Extending Cargo with Custom Commands</a></li></ol></li><li><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Smart Pointers</a></li><li><ol class="section"><li><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box<T> Points to Data on the Heap and Has a Known Size</a></li><li><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> The Deref Trait Allows Access to the Data Through a Reference</a></li><li><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> The Drop Trait Runs Code on Cleanup</a></li><li><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc<T>, the Reference Counted Smart Pointer</a></li><li><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell<T> and the Interior Mutability Pattern</a></li><li><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Creating Reference Cycles and Leaking Memory is Safe</a></li></ol></li><li><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Fearless Concurrency</a></li><li><ol class="section"><li><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Is Rust an Object-Oriented Programming Language?</a></li><li><ol class="section"><li><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> What Does Object-Oriented Mean?</a></li><li><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Trait Objects for Using Values of Different Types</a></li><li><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Object-Oriented Design Pattern Implementations</a></li></ol></li><li><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Patterns Match the Structure of Values</a></li><li><ol class="section"><li><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Refutability: Whether a Pattern Might Fail to Match</a></li><li><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Advanced Features</a></li><li><ol class="section"><li><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li><a href="ch19-02-advanced-lifetimes.html"><strong aria-hidden="true">19.2.</strong> Advanced Lifetimes</a></li><li><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> Advanced Traits</a></li><li><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> Advanced Types</a></li><li><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions &amp; Closures</a></li></ol></li><li><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Final Project: Building a Multithreaded Web Server</a></li><li><ol class="section"><li><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> A Single Threaded Web Server</a></li><li><a href="ch20-02-slow-requests.html"><strong aria-hidden="true">20.2.</strong> How Slow Requests Affect Throughput</a></li><li><a href="ch20-03-designing-the-interface.html"><strong aria-hidden="true">20.3.</strong> Designing the Thread Pool Interface</a></li><li><a href="ch20-04-storing-threads.html"><strong aria-hidden="true">20.4.</strong> Creating the Thread Pool and Storing Threads</a></li><li><a href="ch20-05-sending-requests-via-channels.html"><strong aria-hidden="true">20.5.</strong> Sending Requests to Threads Via Channels</a></li><li><a href="ch20-06-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.6.</strong> Graceful Shutdown and Cleanup</a></li></ol></li><li><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Appendix</a></li><li><ol class="section"><li><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Keywords</a></li><li><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - Operators</a></li></ol></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">The Rust Programming Language</h1> 
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="ch14-03-cargo-workspaces.html#aРабочая-среда-cargo" id="aРабочая-среда-cargo"><h2>Рабочая среда Cargo</h2></a>
+<p>В Главе 12 вы создавали проект, который включал в себе как бинарный, так
+и библиотечный контейнеры. Возможно, вы заметили, что при увеличении проекта
+вполне естественно разделение кода на логически связанные составные части. Для
+упрощения работы над логически связанными контейнерами Cargo предоставляет инфраструктуру
+называемую <em>рабочим пространством</em> (<em>workspaces</em>).</p>
+<p><em>Рабочее пространство</em> является способом группировки пакетов, которые совместно
+используют файл <em>Cargo.lock</em> и папку для хранения конечных программных продуктов
+(будь то бинарные файлы или библиотеки). Далее бы будем создавать проект используя
+возможности данного функционала. Это будет простой проект. В нём бы уделим внимание
+организации рабочего пространства.
+Итак, описание структуры. У нас есть бинарный проект, который использует библиотеки:
+одна библиотека предоставляет функцию <code>add_one</code>, а другая предоставляет функцию
+<code>add_two</code>. Эти три контейнера являются частью неявного рабочего пространства.
+Реализуем эти связи явным образом! Первое, создадим новый бинарный контейнер <code>adder</code>:</p>
+<pre><code class="language-text">$ cargo new --bin adder
+     Created binary (application) `adder` project
+$ cd adder
+</code></pre>
+<p>Добавим в файл описания секцию <code>[workspace]</code> для того, чтобы сообщить Cargo, пакет
+является рабочим пространством:</p>
+<pre><code class="language-toml">[workspace]
+</code></pre>
+<p>Как и многие другие опции Cargo, рабочее пространство поддерживает соглашения по
+конфигурации. Поэтому для того, чтобы проект стал рабочим пространством на достаточно
+просто добавить в файл конфигурации данную информацию.</p>
+<!-- Below -- any crates what depends on, specifically? The program? -->
+<!-- They're all programs. We mean the top-level crate in the workspace here,
+I've tried to clarify. /Carol -->
+<a class="header" href="ch14-03-cargo-workspaces.html#aОпределение-взаимосвязей-в-рабочем-пространстве" id="aОпределение-взаимосвязей-в-рабочем-пространстве"><h3>Определение взаимосвязей в рабочем пространстве</h3></a>
+<p>Все контейнеры в поддиректориях от которых зависит контейнер верхнего уровня являются
+частью рабочего пространства. Любые контейнеры, независимо от их места хранения,
+могут добавлять в зависимости от других контейнеров находящихся в локальных директориях
+с помощью атрибута <code>path</code> в файле <em>Cargo.toml</em>. Если описание контейнера содержит
+ключ <code>[workspace]</code> и имеет описания зависимостей, где пути к зависящим контейнерам
+являются поддиректориями, все эти контейнеры являются частью <em>рабочего пространства</em>.
+Давайте определим в файле <em>Cargo.toml</em> контейнера <code>adder</code>, что он имеет зависимость
+от контейнера <code>add-one</code>, которых расположен в поддиректории:</p>
+<!-- Above, what is the path dependency actually doing here, can you fill out
+the paragraph above? -->
+<!-- done /Carol -->
+<pre><code class="language-toml">[dependencies]
+add-one = { path = &quot;add-one&quot; }
+</code></pre>
+<p>Если же мы добавим описание зависимости в файл <em>Cargo.toml</em>, которое не будет
+содержать <code>path</code>, такая зависимость будет считаться внешней зависимостью, данные о
+которой будут запрашиваться из репозитория Crates.io.</p>
+<a class="header" href="ch14-03-cargo-workspaces.html#aДобавление-второго-контейнера-в-рабочую-среду" id="aДобавление-второго-контейнера-в-рабочую-среду"><h3>Добавление второго контейнера в рабочую среду</h3></a>
+<!-- You can see I'm adding headings, here, trying to add some more navigable
+structure -- can you improve these? I'm not sure mine are accurate -->
+<!-- Yep! /Carol -->
+<p>Далее, после того как мы описали путь к контейнеру, мы создадим его с помощью
+команды:</p>
+<pre><code class="language-text">$ cargo new add-one
+     Created library `add-one` project
+</code></pre>
+<p>Файловая структура папки <code>adder</code> теперь будет иметь следующий вид:</p>
+<pre><code class="language-text">├── Cargo.toml
+├── add-one
+│   ├── Cargo.toml
+│   └── src
+│       └── lib.rs
+└── src
+    └── main.rs
+</code></pre>
+<p>В код библиотеки <em>add-one/src/lib.rs</em> добавим описание функции <code>add_one</code>:</p>
+<p><span class="filename">Filename: add-one/src/lib.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+pub fn add_one(x: i32) -&gt; i32 {
+    x + 1
+}
+#}</code></pre></pre>
+<!-- below -- Where are we adding the extern crate line? -->
+<!-- at the top, where all the extern crate lines go and as illustrated by the listing /Carol -->
+<p>Далее, откроем файл <em>src/main.rs</em> контейнера <code>adder</code> и добавим строку кода <code>extern crate</code>
+в верхней строчке файла исходного кода для того, чтобы добавить возможность использовать
+функционал контейнера <code>add-one</code> в исходном коде. Далее, изменим код функции <code>main</code>.
+Будем использовать функцию импортированного контейнера (14-12):</p>
+<pre><code class="language-rust ignore">extern crate add_one;
+
+fn main() {
+    let num = 10;
+    println!(&quot;Hello, world! {} plus one is {}!&quot;, num, add_one::add_one(num));
+}
+</code></pre>
+<p><span class="caption">код 14-12: использование функционала библиотечного контейнера
+<code>add-one</code> в исходном коде контейнера <code>adder</code></span></p>
+<p>Создадим объектный код контейнера <code>adder</code> с помощью команды <code>cargo build</code> внутри
+папки <em>adder</em>.</p>
+<pre><code class="language-text">$ cargo build
+   Compiling add-one v0.1.0 (file:///projects/adder/add-one)
+   Compiling adder v0.1.0 (file:///projects/adder)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.68 secs
+</code></pre>
+<p>С помощью данной команды мы создали объектный код контейнеров <code>adder</code> и <code>add-one</code>.
+Теперь структура каталога <code>adder</code> выглядит следующим образом:</p>
+<pre><code class="language-text">├── Cargo.lock
+├── Cargo.toml
+├── add-one
+│   ├── Cargo.toml
+│   └── src
+│       └── lib.rs
+├── src
+│   └── main.rs
+└── target
+</code></pre>
+<p>Рабочее пространство имеет одну директорию для хранения объектных файлов (<em>target</em>
+directory). Обратите внимание, что контейнер <em>add-one</em> не имеет своей собственной
+директории для хранения объектных файлов (<em>target</em> directory). Даже если вы перейдёте
+в папку <em>adder/add-one/target</em> и запустим команду <code>cargo build</code>, то данный пакет
+будем всё равно скомпилирован в директорию <em>adder/target</em>. Контейнеры в рабочем
+пространстве могут быть связаны между собой. Если, по какой-то причине, подчиненному
+контейнеру необходимо иметь свою директорию для хранения объектных файлов, каждый
+то контейнеры, которые зависят от него также будут перекомпилированы. Это источник
+ошибок и множества проблем. Поэтому для упрощения в рабочем пространстве есть только
+одна одна директория для хранения объектных файлов.</p>
+<!-- Above -- I have no idea what this means for our project here, can you put
+it in more practical terms, or otherwise maybe just explain what this means for
+the user? -->
+<!-- I added more explanation for the target directory in this section and
+added more explanation for the Cargo.lock in the next section, since the
+Cargo.lock advantages aren't as visible until you start adding dependencies on
+external crates. What do you think? /Carol -->
+<a class="header" href="ch14-03-cargo-workspaces.html#aЗависимость-от-внешних-контейнеров-в-рабочей-среде" id="aЗависимость-от-внешних-контейнеров-в-рабочей-среде"><h4>Зависимость от внешних контейнеров в рабочей среде</h4></a>
+<p>Обратите внимание, что рабочая в рабочей среде есть только один файл <em>Cargo.lock</em>
+на все имеющиеся контейнеры. В данном примере мы предполагаем, что все контейнеры
+используют одни и те же зависимости, которые описаны в файле <em>Cargo.toml</em>. Также
+такой способ обеспечивает совместимость всем зависимых контейнеров.</p>
+<p>Добавим зависимость <code>rand</code> в секцию <code>[dependencies]</code> файла <em>add-one/Cargo.toml</em>::</p>
+<p><span class="filename">Filename: add-one/Cargo.toml</span></p>
+<pre><code class="language-toml">[dependencies]
+
+rand = &quot;0.3.14&quot;
+</code></pre>
+<p>Далее, мы добавим код <code>extern crate rand;</code> в файл <em>add-one/src/lib.rs</em> и соберем
+объектные файлы с помощью команды <code>cargo build</code> в директории <em>adder</em>. Обратите
+внимание, что в этой директории будет скомпилирован контейнер <code>rand</code>:</p>
+<pre><code class="language-text">$ cargo build
+    Updating registry `https://github.com/rust-lang/crates.io-index`
+ Downloading rand v0.3.14
+   ...snip...
+   Compiling rand v0.3.14
+   Compiling add-one v0.1.0 (file:///projects/adder/add-one)
+   Compiling adder v0.1.0 (file:///projects/adder)
+    Finished dev [unoptimized + debuginfo] target(s) in 10.18 secs
+</code></pre>
+<p>Файл <em>Cargo.lock</em> теперь содержит информацию о зависимости контейнера <code>add-one</code>
+от <code>rand</code>. Хотя <code>rand</code> используется рабочем пространстве, вы не можете его
+использовать без явного указания на него в зависимостях контейнера. Например,
+если вы добавите строку кода <code>extern crate rand;</code> в файл исходного кода контейнера
+<code>adder</code>, то код перестанет компилироваться:</p>
+<pre><code class="language-text">$ cargo build
+   Compiling adder v0.1.0 (file:///projects/adder)
+error[E0463]: can't find crate for `rand`
+ --&gt; src/main.rs:1:1
+  |
+1 | extern crate rand;
+  | ^^^^^^^^^^^^^^^^^^^ can't find crate
+</code></pre>
+<p>Для исправления этой ошибки добавте ссылку на него в файл <em>Cargo.toml</em>. После
+запустите команду <code>cargo build</code> ещё раз. Описание зависимостей изменится в файле
+<em>Cargo.lock</em>, но дополнительных копий контейнера <code>rand</code> не будет скачано. Использование
+одной и той же копии зависимости внутри рабочего пространства экономит и упрощает
+хранение контейнеров-зависимостей.</p>
+<a class="header" href="ch14-03-cargo-workspaces.html#aДобавление-теста-в-рабочее-пространство" id="aДобавление-теста-в-рабочее-пространство"><h4>Добавление теста в рабочее пространство</h4></a>
+<p>В целях дальнейших улучшений нашего проекта, добавим тест функции <code>add_one::add_one</code>
+в контейнере <code>add_one</code>:</p>
+<p><span class="filename">Filename: add-one/src/lib.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+pub fn add_one(x: i32) -&gt; i32 {
+    x + 1
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn it_works() {
+        assert_eq!(3, add_one(2));
+    }
+}
+#}</code></pre></pre>
+<p>Выполните команду <code>cargo test</code> в рабочем пространстве <em>adder</em>:</p>
+<pre><code class="language-text">$ cargo test
+   Compiling adder v0.1.0 (file:///projects/adder)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.27 secs
+     Running target/debug/adder-f0253159197f7841
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+</code></pre>
+<p>Как же так? Нет тестов? Но у нас же есть один? Обратите внимание, что тесты были
+выполнены только дня проекта модуля рабочего пространства. Для того, чтобы выполнить
+все тесты используйте опцию (флаг) <code>--all</code>:</p>
+<pre><code class="language-text">$ cargo test --all
+    Finished dev [unoptimized + debuginfo] target(s) in 0.37 secs
+     Running target/debug/deps/add_one-abcabcabc
+
+running 1 test
+test tests::it_works ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+
+     Running target/debug/deps/adder-abcabcabc
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+
+   Doc-tests add-one
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+</code></pre>
+<p>Для того, чтобы запустить тесты определённого контейнера необходимо использовать
+флаг <code>-p</code> и имя контейнера:</p>
+<pre><code class="language-text">$ cargo test -p add-one
+    Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+     Running target/debug/deps/add_one-b3235fea9a156f74
+
+running 1 test
+test tests::it_works ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+
+   Doc-tests add-one
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
+</code></pre>
+<p>Этот вывод информации сообщил только о тестах в контейнере <code>add-one</code>.</p>
+<p>Если вы захотите публиковать контейнеры из данной рабочей среды на сайте crates.io,
+каждый контейнер будет публиковаться отдельно. Команда <code>cargo publish</code> не имеет
+уточняющих флагов, поэтому должна использоваться только в том контейнере, который
+нужно опубликовать.</p>
+<!-- What does that mean, we have to publish them all one at a time?-->
+<!-- Yep, we've tried to clarify /Carol -->
+<p>Сейчас создаёте ещё один контейнер в рабочей среде - <code>add-two</code>.</p>
+<p>Использование рабочей среды упрощает разработку многокомпонентных контейнеров.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="ch14-02-publishing-to-crates-io.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="ch14-04-installing-binaries.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="ch14-02-publishing-to-crates-io.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="ch14-04-installing-binaries.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+
+        
+        <script src="searchindex.js" type="text/javascript" charset="utf-8"></script>
+        
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+    </body>
+</html>

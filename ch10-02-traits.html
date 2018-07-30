@@ -1,0 +1,629 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Traits: Defining Shared Behavior - The Rust Programming Language</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="_FontAwesome/css/font-awesome.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+
+    </head>
+    <body class="light">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="ch01-00-introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li></ol></li><li><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Guessing Game Tutorial</a></li><li><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Common Programming Concepts</a></li><li><ol class="section"><li><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Variables and Mutability</a></li><li><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Data Types</a></li><li><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> How Functions Work</a></li><li><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Comments</a></li><li><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Control Flow</a></li></ol></li><li><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Understanding Ownership</a></li><li><ol class="section"><li><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> What is Ownership?</a></li><li><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> References &amp; Borrowing</a></li><li><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Slices</a></li></ol></li><li><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Using Structs to Structure Related Data</a></li><li><ol class="section"><li><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Defining and Instantiating Structs</a></li><li><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> An Example Program Using Structs</a></li><li><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Method Syntax</a></li></ol></li><li><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enums and Pattern Matching</a></li><li><ol class="section"><li><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Defining an Enum</a></li><li><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> The match Control Flow Operator</a></li><li><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Concise Control Flow with if let</a></li></ol></li><li><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> Modules</a></li><li><ol class="section"><li><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> mod and the Filesystem</a></li><li><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> Controlling Visibility with pub</a></li><li><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> Importing Names with use</a></li></ol></li><li><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Error Handling</a></li><li><ol class="section"><li><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Unrecoverable Errors with panic!</a></li><li><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Recoverable Errors with Result</a></li><li><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> To panic! or Not To panic!</a></li></ol></li><li><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Generic Types, Traits, and Lifetimes</a></li><li><ol class="section"><li><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Generic Data Types</a></li><li><a href="ch10-02-traits.html" class="active"><strong aria-hidden="true">10.2.</strong> Traits: Defining Shared Behavior</a></li><li><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Validating References with Lifetimes</a></li></ol></li><li><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Testing</a></li><li><ol class="section"><li><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Writing tests</a></li><li><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Running tests</a></li><li><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Test Organization</a></li></ol></li><li><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> An I/O Project: Building a Command Line Program</a></li><li><ol class="section"><li><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Accepting Command Line Arguments</a></li><li><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Reading a File</a></li><li><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Refactoring to Improve Modularity and Error Handling</a></li><li><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Developing the Library’s Functionality with Test Driven Development</a></li><li><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Working with Environment Variables</a></li><li><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Writing Error Messages to Standard Error Instead of Standard Output</a></li></ol></li><li><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Functional Language Features in Rust</a></li><li><ol class="section"><li><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Closures</a></li><li><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Iterators</a></li><li><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Improving our I/O Project</a></li><li><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Performance</a></li></ol></li><li><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> More about Cargo and Crates.io</a></li><li><ol class="section"><li><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Customizing Builds with Release Profiles</a></li><li><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Publishing a Crate to Crates.io</a></li><li><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Cargo Workspaces</a></li><li><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Extending Cargo with Custom Commands</a></li></ol></li><li><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Smart Pointers</a></li><li><ol class="section"><li><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box<T> Points to Data on the Heap and Has a Known Size</a></li><li><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> The Deref Trait Allows Access to the Data Through a Reference</a></li><li><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> The Drop Trait Runs Code on Cleanup</a></li><li><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc<T>, the Reference Counted Smart Pointer</a></li><li><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell<T> and the Interior Mutability Pattern</a></li><li><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Creating Reference Cycles and Leaking Memory is Safe</a></li></ol></li><li><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Fearless Concurrency</a></li><li><ol class="section"><li><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Is Rust an Object-Oriented Programming Language?</a></li><li><ol class="section"><li><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> What Does Object-Oriented Mean?</a></li><li><a href="ch17-02-trait-objects.html"><strong aria-hidden="true">17.2.</strong> Trait Objects for Using Values of Different Types</a></li><li><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Object-Oriented Design Pattern Implementations</a></li></ol></li><li><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Patterns Match the Structure of Values</a></li><li><ol class="section"><li><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Refutability: Whether a Pattern Might Fail to Match</a></li><li><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Advanced Features</a></li><li><ol class="section"><li><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li><a href="ch19-02-advanced-lifetimes.html"><strong aria-hidden="true">19.2.</strong> Advanced Lifetimes</a></li><li><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> Advanced Traits</a></li><li><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> Advanced Types</a></li><li><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions &amp; Closures</a></li></ol></li><li><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Final Project: Building a Multithreaded Web Server</a></li><li><ol class="section"><li><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> A Single Threaded Web Server</a></li><li><a href="ch20-02-slow-requests.html"><strong aria-hidden="true">20.2.</strong> How Slow Requests Affect Throughput</a></li><li><a href="ch20-03-designing-the-interface.html"><strong aria-hidden="true">20.3.</strong> Designing the Thread Pool Interface</a></li><li><a href="ch20-04-storing-threads.html"><strong aria-hidden="true">20.4.</strong> Creating the Thread Pool and Storing Threads</a></li><li><a href="ch20-05-sending-requests-via-channels.html"><strong aria-hidden="true">20.5.</strong> Sending Requests to Threads Via Channels</a></li><li><a href="ch20-06-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.6.</strong> Graceful Shutdown and Cleanup</a></li></ol></li><li><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Appendix</a></li><li><ol class="section"><li><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Keywords</a></li><li><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - Operators</a></li></ol></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">The Rust Programming Language</h1> 
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="ch10-02-traits.html#aТипажи-определение-общего-поведения" id="aТипажи-определение-общего-поведения"><h2>Типажи: определение общего поведения</h2></a>
+<p>Типажи позволяют использовать особые виды абстракций. Он позволяют типам данных
+получать поведение. <em>Типаж</em> сообщает компилятору о функциональности определенного
+типа, который может быть передан другому типу. Дополнительно к тому, что мы можем
+использовать обобщенные типы данных, мы можем использовать <em>связывание с типажами</em>.</p>
+<blockquote>
+<p>Обратите внимание: <em>Типажи</em> похожи на интерфейсы (например, в языке Java), но
+имеют отличия.</p>
+</blockquote>
+<a class="header" href="ch10-02-traits.html#aОпределение-типажа" id="aОпределение-типажа"><h3>Определение типажа</h3></a>
+<p>Поведение типа определяется теми методами, которые мы можем использовать.
+Различные типы разделяют поведение, если мы можем вызвать одни и теже методы во всех
+типах. Определение типажей - это способ группировки определений методов вместе для
+того чтобы иметь множество поведений необходимых для достижения каких-либо целей.</p>
+<p>Например, у нас есть несколько структур, которые имеют различные типы и количество
+текста. Структура <code>NewsArticle</code> содержит новости, которые печатаются в различных
+местах в мире. Структура <code>Tweet</code> имеет 140 символов для содержания ссылки и короткого
+сообщения.</p>
+<p>Мы хотим создать библиотеку для хранения и отображения коротких описаний данных,
+которые могли бы быть сохранены в экземплярах структур <code>NewsArticle</code> или <code>Tweet</code>.
+Необходимо, чтобы каждая структура имела возможность делать короткие заметки
+на основе имеющихся данных. Это должно происходить при вызове метода экземпляра
+<code>summary</code>. Пример (10-12) иллюстрирует определение типажа <code>Summarizable</code>, в котором
+есть необходимый метод (действие, поведение):</p>
+<p><span class="filename">Filename: lib.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+pub trait Summarizable {
+    fn summary(&amp;self) -&gt; String;
+}
+#}</code></pre></pre>
+<p><span class="caption">Код 10-12: Определение типажа <code>Summarizable</code>, который содержит
+поведение (метод <code>summary</code>)</span></p>
+<p>Обратите внимание на синтаксис определения поведения. Синтаксис напоминает определение
+структуры. Отличие вы, наверное, тоже заметили. Оно в описании метода. Только описание.
+Реализации нет. Каждый тип данных, которые реализует это поведение должен иметь
+свою реализацию. Компилятор будет проверять, что каждый тип реализующий данное поведение
+делал это в точном соответствии с описанием.</p>
+<p>Типаж может иметь несколько описаний методов. Каждое описание должно находиться на
+одной строке и все они должны закачиваться символом &quot;;&quot;.</p>
+<a class="header" href="ch10-02-traits.html#aРеализация-типажа-в-типах" id="aРеализация-типажа-в-типах"><h3>Реализация типажа в типах</h3></a>
+<p>После описания типажа <code>Summarizable</code> можно описать, реализовать типы имеющие соответствующее
+поведение. Код (10-13) показывает реализацию типажа <code>Summarizable</code> в структуре
+<code>NewsArticle</code>. Эта структура имеет поля для формирования описания.
+Структура <code>Tweet</code> также имеет поля, для формирования содержания описания.</p>
+<p><span class="filename">Filename: lib.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+ pub trait Summarizable {
+     fn summary(&amp;self) -&gt; String;
+ }
+
+pub struct NewsArticle {
+    pub headline: String,
+    pub location: String,
+    pub author: String,
+    pub content: String,
+}
+
+impl Summarizable for NewsArticle {
+    fn summary(&amp;self) -&gt; String {
+        format!(&quot;{}, by {} ({})&quot;, self.headline, self.author, self.location)
+    }
+}
+
+pub struct Tweet {
+    pub username: String,
+    pub content: String,
+    pub reply: bool,
+    pub retweet: bool,
+}
+
+impl Summarizable for Tweet {
+    fn summary(&amp;self) -&gt; String {
+        format!(&quot;{}: {}&quot;, self.username, self.content)
+    }
+}
+#}</code></pre></pre>
+<p><span class="caption">Код программы 10-13: Реализация типажа <code>Summarizable</code>
+в структурах <code>NewsArticle</code> и <code>Tweet</code></span></p>
+<p>Реализация типажа это тоже самое, что реализация методов, которые не связаны с
+типажом. Различия в том что после ключевого слова <code>impl</code> мы сообщаем имя типажа,
+который будем реализовывать. Далее идет ключевое слово <code>for</code> и затем типа. Внутри
+блока мы пишем определение функции и её реализацию.</p>
+<p>После того, как мы реализовали типаж, мы можем вызвать методы экземпляров
+<code>NewsArticle</code> и <code>Tweet</code> тем же способом, что и вызов методов, которые не являются
+частью типажа:</p>
+<pre><code class="language-rust ignore">let tweet = Tweet {
+    username: String::from(&quot;horse_ebooks&quot;),
+    content: String::from(&quot;of course, as you probably already know, people&quot;),
+    reply: false,
+    retweet: false,
+};
+
+println!(&quot;1 new tweet: {}&quot;, tweet.summary());
+</code></pre>
+<p>Чтобы проверить работу созданных программных решений в одной проекте, создадим
+новый проект с названием aggregator:</p>
+<pre><code>cargo new aggregator &amp;&amp; cd aggregator
+</code></pre>
+<p>Далее в файле <em>lib.rs</em> внесем код (10-13). Далее создадим файл <em>main.rs</em>.
+Внесем в него следующий код:</p>
+<pre><code class="language-rust ignore">extern crate aggregator;
+
+use aggregator::Summarizable;
+use aggregator::Tweet;
+
+
+fn main() {
+    let tweet = Tweet {
+        username: String::from(&quot;horse_ebooks&quot;),
+        content: String::from(&quot;of course, as you probably already know, people&quot;),
+        reply: false,
+        retweet: false,
+    };
+
+    println!(&quot;1 new tweet: {}&quot;, tweet.summary());
+}
+
+</code></pre>
+<p>Далее, запускайте проект на выполнение:</p>
+<pre><code>cargo run
+</code></pre>
+<p>В результате работы кода этой программы будет напечатано:
+<code>1 new tweet: horse_ebooks: of course, as you probably already know, people</code>.</p>
+<p>Обратите внимание, что т.к. мы объявили типаж <code>Summarizable</code> и типы <code>NewsArticle</code>
+и <code>Tweet</code> в файле <code>lib.rs</code>, все они в одной и той же области видимости.
+Если кто-либо ещё захочет использовать функционал нашего контейнера и также реализовать
+поведение <code>Summarizable</code>, то в этом случае необходимо импортировать типаж <code>Summarizable</code>
+в область видимости (10-14):</p>
+<p><span class="filename">Filename: lib.rs</span></p>
+<pre><code class="language-rust ignore">extern crate aggregator;
+
+use aggregator::Summarizable;
+
+struct WeatherForecast {
+    high_temp: f64,
+    low_temp: f64,
+    chance_of_precipitation: f64,
+}
+
+impl Summarizable for WeatherForecast {
+    fn summary(&amp;self) -&gt; String {
+        format!(&quot;The high will be {}, and the low will be {}. The chance of
+        precipitation is {}%.&quot;, self.high_temp, self.low_temp,
+        self.chance_of_precipitation)
+    }
+}
+</code></pre>
+<p><span class="caption">Listing 10-14: Добавление типажа <code>Summarizable</code> из контейнера
+<code>aggregator</code> в область видимости другого крата</span></p>
+<p>Для проверки работы этого кода программы создайте новый проект ch10_weather_forecast.
+В файл lib.rs добавьте код (10-14). Далее, создайте файл main.rs в него внесите
+следующий код:</p>
+<pre><code class="language-rust ignore">extern crate aggregator;
+
+use aggregator::Summarizable;
+
+struct WeatherForecast {
+    high_temp: f64,
+    low_temp: f64,
+    chance_of_precipitation: f64,
+}
+
+impl Summarizable for WeatherForecast {
+    fn summary(&amp;self) -&gt; String {
+        format!(&quot;The high will be {}, and the low will be {}. The chance of
+        precipitation is {}%.&quot;, self.high_temp, self.low_temp,
+        self.chance_of_precipitation)
+    }
+}
+</code></pre>
+<p>Обратите внимание, что данный код не будет скомпилирован, т.к. контейнер <code>aggregator</code>
+не будет найден. В этом проявляется ограничение работы с типажами.</p>
+<p>Пожалуйста, обратите внимание на реализации типажей. Нельзя реализовывать внешние типажи
+во внешних типах данных. Например, нельзя реализовать типаж <code>Display</code> в структуре <code>Vec</code>,
+т.к. их код находится в стандартной библиотеке. Разрешается реализовывать внешние
+типажи во внутренних типах. Например, типаж <code>Display</code> можно реализовать в структуре
+<code>Tweet</code> внутри крата <code>aggregator</code>. Также можно изменить структуру стандартной библиотеки
+<code>Vec</code> реализовав в ней типаж <code>Summarizable</code> также  внутри контейнера <code>aggregator</code>.
+Такое ограничение называется <em>orphan rule</em> и оно существует для предотвращения
+дублирования и надёжности библиотек кода.</p>
+<a class="header" href="ch10-02-traits.html#aРеализации-по-умолчанию" id="aРеализации-по-умолчанию"><h3>Реализации по умолчанию</h3></a>
+<p>Весьма удобно, когда существует поведение по умолчанию. Это может уменьшить
+трудозатраты программиста, если это поведения ему подходи в его структурах.</p>
+<p>Код (10-15) демонстрирует реализацию поведения в типаже. Это поведение можно будет
+переписать в реализации:</p>
+<p><span class="filename">Filename: lib.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+pub trait Summarizable {
+    fn summary(&amp;self) -&gt; String {
+        String::from(&quot;(Read more...)&quot;)
+    }
+}
+#}</code></pre></pre>
+<p><span class="caption">Listing 10-15: Реализация в типаже <code>Summarizable</code> поведения
+<code>summary</code></span></p>
+<p>Если по каким-то причинам вы хотите реализовать поведение типажа без его перезаписывания,
+то просто напишите следующий код (пустой блок):</p>
+<pre><code class="language-rust ignore">
+impl Summarizable for DefaultArticle {}
+</code></pre>
+<p>Использование структуры и унаследованного поведения от типажа <code>NewsArticle</code>:</p>
+<pre><code class="language-rust ignore">let article = NewsArticle {
+    headline: String::from(&quot;Penguins win the Stanley Cup Championship!&quot;),
+    location: String::from(&quot;Pittsburgh, PA, USA&quot;),
+    author: String::from(&quot;Iceburgh&quot;),
+    content: String::from(&quot;The Pittsburgh Penguins once again are the best
+    hockey team in the NHL.&quot;),
+};
+
+println!(&quot;New article available! {}&quot;, article.summary());
+</code></pre>
+<p>This code prints <code>New article available! (Read more...)</code>.</p>
+<p>Изменения сделанные в типаже <code>Summarizable</code> (реализация поведения) не отражается
+каким-либо образом на структурах, которые ещё реализовали ранее.</p>
+<p>Можно усложнить реализацию метода и в нём вызывать методы, которые не имеют
+реализации:</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+pub trait Summarizable {
+    fn author_summary(&amp;self) -&gt; String;
+
+    fn summary(&amp;self) -&gt; String {
+        format!(&quot;(Read more from {}...)&quot;, self.author_summary())
+    }
+}
+#}</code></pre></pre>
+<p>Теперь для того чтобы использовать типаж <code>Summarizable</code> в каждой реализации необходимо
+реализовать метод <code>author_summary</code>:</p>
+<pre><code class="language-rust ignore">impl Summarizable for Tweet {
+    fn author_summary(&amp;self) -&gt; String {
+        format!(&quot;@{}&quot;, self.username)
+    }
+}
+</code></pre>
+<p>Т.е. после того как вы реализуете <code>author_summary</code> в структуре <code>Tweet</code> реализация
+по умолчанию вызовет метод <code>author_summary</code>.
+Если вы знакомы с объектно-ориентированным программированием в Java, уверен, тут
+у Вас не будет возникать вопросов. Всё это напоминает интерфейсы и абстрактные классы
+Java.</p>
+<pre><code class="language-rust ignore">let tweet = Tweet {
+    username: String::from(&quot;horse_ebooks&quot;),
+    content: String::from(&quot;of course, as you probably already know, people&quot;),
+    reply: false,
+    retweet: false,
+};
+
+println!(&quot;1 new tweet: {}&quot;, tweet.summary());
+</code></pre>
+<p>This will print <code>1 new tweet: (Read more from @horse_ebooks...)</code>.</p>
+<p>Обратите также внимание, что нельзя вызвать метод по умолчанию из реализации.</p>
+<a class="header" href="ch10-02-traits.html#aСвязывание-с-типажом" id="aСвязывание-с-типажом"><h3>Связывание с типажом</h3></a>
+<p>Теперь, когда мы создали типажи и реализовали их в типах, мы можем усложнить код и
+добавить в них элементы обобщенного программирования. Мы может сократить количество
+возможных обобщенных типов данных с помощью типажей. Этот приём называется
+<em>связывание с типажом</em> в обобщенном типе данных.</p>
+<p>Например, в примере кода (10-13) мы реализовали типаж <code>Summarizable</code> в структурах
+<code>NewsArticle</code> и <code>Tweet</code>. Теперь мы можем объявить функцию <code>notify</code>, которая будет
+вызывать метод <code>summary</code> из переменной. Мы объявим в коде, что тип переменной <code>item</code>
+должен реализовывать типаж <code>Summarizable</code>:</p>
+<pre><code class="language-rust ignore">pub fn notify&lt;T: Summarizable&gt;(item: T) {
+    println!(&quot;Breaking news! {}&quot;, item.summary());
+}
+</code></pre>
+<p>Добавим этот метов внутрь блока <code>Summarizable</code>:</p>
+<pre><code class="language-rust ignore">pub trait Summarizable {
+//  fn summary(&amp;self) -&gt; String;
+//  fn summary(&amp;self) -&gt; String {
+//      String::from(&quot;(Read more...)&quot;)
+//  }
+
+  fn author_summary(&amp;self) -&gt; String;
+
+    fn summary(&amp;self) -&gt; String {
+        format!(&quot;(Read more from {}...)&quot;, self.author_summary())
+    }
+
+    fn notify&lt;T: Summarizable&gt;(item: T) {
+        println!(&quot;Breaking news! {}&quot;, item.summary());
+    }
+}
+</code></pre>
+<p>Связывание с типажом - это ограничение накладываемое на обобщенный тип. Входящая
+переменной может быть экземпляром любой структуры реализовавшей типаж <code>Summarizable</code>.
+Внешний код программы, может вызвать метод <code>notify</code>, как, например <code>WeatherForecast</code>.
+Все остальные типы данных, такие как <code>String</code> или <code>i32</code> не могут быть входными данными
+этой функции, т.к. они не реализовали типаж <code>Summarizable</code>.</p>
+<p>Для того, чтобы указать несколько типажей в список ограничений необходимо использовать
+знак <code>+</code>, чтобы объединить их названия. Например, можно добавить <code>T: Summarizable + Display</code>, чтобы наложить ограничение на особенности форматирования и реализацию
+методов <code>Summarizable</code>.</p>
+<p>Для функций, которые имеют множество обобщенных типов параметров, каждый обобщенный
+параметр может иметь своё собственное связывание.</p>
+<pre><code class="language-rust ignore">fn some_function&lt;T: Display + Clone, U: Clone + Debug&gt;(t: T, u: U) -&gt; i32 {
+</code></pre>
+<p>Для упрощения этой записи существует альтернативный синтаксис (использование <code>where</code>):</p>
+<pre><code class="language-rust ignore">fn some_function&lt;T, U&gt;(t: T, u: U) -&gt; i32
+    where T: Display + Clone,
+          U: Clone + Debug
+{
+</code></pre>
+<p>Такое описание более понятно.</p>
+<a class="header" href="ch10-02-traits.html#aИсправление-кода-функции-largest-с-помощью-связывание-с-типажом" id="aИсправление-кода-функции-largest-с-помощью-связывание-с-типажом"><h3>Исправление кода функции <code>largest</code> с помощью связывание с типажом</h3></a>
+<p>Каждый раз, когда вы хотите использовать поведение определенное в типаже в
+обобщенном методе, вам необходимо определить обобщенный тип в области типа.</p>
+<p>Для того, чтобы использовать оператор сравнения вам нужно указать в ограничении
+типаж стандартной библиотеки  <code>std::cmp::PartialOrd</code>:</p>
+<pre><code class="language-rust ignore">fn largest&lt;T: PartialOrd&gt;(list: &amp;[T]) -&gt; T {
+</code></pre>
+<p>Но это ещё не всё (попытавшись скомпилировать этот код, вы получите ошибку):</p>
+<pre><code class="language-text">error[E0508]: cannot move out of type `[T]`, a non-copy array
+ --&gt; src/main.rs:4:23
+  |
+4 |     let mut largest = list[0];
+  |         -----------   ^^^^^^^ cannot move out of here
+  |         |
+  |         hint: to prevent move, use `ref largest` or `ref mut largest`
+
+error[E0507]: cannot move out of borrowed content
+ --&gt; src/main.rs:6:9
+  |
+6 |     for &amp;item in list.iter() {
+  |         ^----
+  |         ||
+  |         |hint: to prevent move, use `ref item` or `ref mut item`
+  |         cannot move out of borrowed content
+</code></pre>
+<p>Т.к. вы сделали функцию <code>largest</code>, то есть потенциальная возможность использовать
+типы данных, которые не реализовали типаж <code>Copy</code> (только реализации типажа <code>Copy</code>)
+имеют известный размер, а следовательно могут быть измерены, сравнены. Добавим
+это ограничение в список:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">use std::cmp::PartialOrd;
+
+fn largest&lt;T: PartialOrd + Copy&gt;(list: &amp;[T]) -&gt; T {
+    let mut largest = list[0];
+
+    for &amp;item in list.iter() {
+        if item &gt; largest {
+            largest = item;
+        }
+    }
+
+    largest
+}
+
+fn main() {
+    let number_list = vec![34, 50, 25, 100, 65];
+
+    let result = largest(&amp;number_list);
+    println!(&quot;The largest number is {}&quot;, result);
+
+    let char_list = vec!['y', 'm', 'a', 'q'];
+
+    let result = largest(&amp;char_list);
+    println!(&quot;The largest char is {}&quot;, result);
+}
+</code></pre></pre>
+<p><span class="caption">Код 10-16: Реализация <code>largest</code> с помощью наложения ограничений
+на типы входных параметров</span></p>
+<p>Если вы не хотите накладывать ограничение типажа <code>Copy</code> вы можете указать вместо
+него типаж <code>Clone</code>. При этом будет использована куча для хранения данных.
+Если же вы не хотите наложения ограничений - просто используйте ссылку <code>&amp;T</code>, как
+результат работы функции.</p>
+<a class="header" href="ch10-02-traits.html#aИспользование-связывание-типажа-при-выполнении-определенных-условий" id="aИспользование-связывание-типажа-при-выполнении-определенных-условий"><h3>Использование связывание типажа при выполнении определенных условий</h3></a>
+<p>Пойдём дальше и сделаем наш код ещё интереснее. Мы можем связывать с типажом при
+наступлении определенных условий.</p>
+<p>Например, тип <code>Pair&lt;T&gt;</code> из примера кода (10-17), всегда реализует метод <code>new</code>, но
+в тоже время, реализует метод <code>cmp_display</code> только лишь если внутренний тип <code>T</code>
+реализует типаж <code>PartialOrd</code> и <code>Display</code>:</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+use std::fmt::Display;
+
+struct Pair&lt;T&gt; {
+    x: T,
+    y: T,
+}
+
+impl&lt;T&gt; Pair&lt;T&gt; {
+    fn new(x: T, y: T) -&gt; Self {
+        Self {
+            x,
+            y,
+        }
+    }
+}
+
+impl&lt;T: Display + PartialOrd&gt; Pair&lt;T&gt; {
+    fn cmp_display(&amp;self) {
+        if self.x &gt;= self.y {
+            println!(&quot;The largest member is x = {}&quot;, self.x);
+        } else {
+            println!(&quot;The largest member is y = {}&quot;, self.y);
+        }
+    }
+}
+#}</code></pre></pre>
+<p><span class="caption">Код программы 10-17: Реализация метода только при соблюдении
+типами параметров определенных условий</span></p>
+<p>Мы также можем опционально реализовать типа для типа для любого типа который реализует
+типаж. Эта особенность весьма часто используется в стандартной библиотеке.
+Например, в стандартной библиотеке типаж <code>ToString</code> реализован, только если реализован
+типаж <code>Display</code>. Синтаксис такого условия выглядит следующим образом:</p>
+<pre><code class="language-rust ignore">impl&lt;T: Display&gt; ToString for T {
+    // ...snip...
+}
+</code></pre>
+<p>При таком условии мы можем вызвать метод <code>to_string</code> определенный в типаже <code>ToString</code>,
+который реализовал типаж <code>Display</code>. Например, такой код будет корректным, т.к.
+целочисленный тип реализовал типаж <code>Display</code>:</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+let s = 3.to_string();
+#}</code></pre></pre>
+<p>В секции документации “Implementors” описываются подобные случаи использования типажей.</p>
+<p>Все эти возможности, предоставляют инструмент для минимизации дублирования кода.
+Rust предоставляет такие широкие возможности для того чтобы на этапе компиляции
+можно было отследить возможные ошибки связывания типов.</p>
+<p>Существует ещё одни тип обобщенного типов данных, которые можно использовать
+даже без реализации. Это т.н. <em>lifetimes</em>. Вместо того, чтобы проверять наличие
+реализаций в типах эти языковые конструкции помогают удостовериться в том, что
+ссылки действительны. В следующей части этой главы вы узнаете об этом подробнее.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="ch10-01-syntax.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="ch10-03-lifetime-syntax.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="ch10-01-syntax.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="ch10-03-lifetime-syntax.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+
+        
+        <script src="searchindex.js" type="text/javascript" charset="utf-8"></script>
+        
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+    </body>
+</html>

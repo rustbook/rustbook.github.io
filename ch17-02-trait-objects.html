@@ -1,0 +1,572 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Trait Objects for Using Values of Different Types - The Rust Programming Language</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="_FontAwesome/css/font-awesome.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+
+    </head>
+    <body class="light">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="ch01-00-introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li><a href="ch01-01-installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li><a href="ch01-02-hello-world.html"><strong aria-hidden="true">1.2.</strong> Hello, World!</a></li></ol></li><li><a href="ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.</strong> Guessing Game Tutorial</a></li><li><a href="ch03-00-common-programming-concepts.html"><strong aria-hidden="true">3.</strong> Common Programming Concepts</a></li><li><ol class="section"><li><a href="ch03-01-variables-and-mutability.html"><strong aria-hidden="true">3.1.</strong> Variables and Mutability</a></li><li><a href="ch03-02-data-types.html"><strong aria-hidden="true">3.2.</strong> Data Types</a></li><li><a href="ch03-03-how-functions-work.html"><strong aria-hidden="true">3.3.</strong> How Functions Work</a></li><li><a href="ch03-04-comments.html"><strong aria-hidden="true">3.4.</strong> Comments</a></li><li><a href="ch03-05-control-flow.html"><strong aria-hidden="true">3.5.</strong> Control Flow</a></li></ol></li><li><a href="ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.</strong> Understanding Ownership</a></li><li><ol class="section"><li><a href="ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.1.</strong> What is Ownership?</a></li><li><a href="ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.2.</strong> References &amp; Borrowing</a></li><li><a href="ch04-03-slices.html"><strong aria-hidden="true">4.3.</strong> Slices</a></li></ol></li><li><a href="ch05-00-structs.html"><strong aria-hidden="true">5.</strong> Using Structs to Structure Related Data</a></li><li><ol class="section"><li><a href="ch05-01-defining-structs.html"><strong aria-hidden="true">5.1.</strong> Defining and Instantiating Structs</a></li><li><a href="ch05-02-example-structs.html"><strong aria-hidden="true">5.2.</strong> An Example Program Using Structs</a></li><li><a href="ch05-03-method-syntax.html"><strong aria-hidden="true">5.3.</strong> Method Syntax</a></li></ol></li><li><a href="ch06-00-enums.html"><strong aria-hidden="true">6.</strong> Enums and Pattern Matching</a></li><li><ol class="section"><li><a href="ch06-01-defining-an-enum.html"><strong aria-hidden="true">6.1.</strong> Defining an Enum</a></li><li><a href="ch06-02-match.html"><strong aria-hidden="true">6.2.</strong> The match Control Flow Operator</a></li><li><a href="ch06-03-if-let.html"><strong aria-hidden="true">6.3.</strong> Concise Control Flow with if let</a></li></ol></li><li><a href="ch07-00-modules.html"><strong aria-hidden="true">7.</strong> Modules</a></li><li><ol class="section"><li><a href="ch07-01-mod-and-the-filesystem.html"><strong aria-hidden="true">7.1.</strong> mod and the Filesystem</a></li><li><a href="ch07-02-controlling-visibility-with-pub.html"><strong aria-hidden="true">7.2.</strong> Controlling Visibility with pub</a></li><li><a href="ch07-03-importing-names-with-use.html"><strong aria-hidden="true">7.3.</strong> Importing Names with use</a></li></ol></li><li><a href="ch08-00-common-collections.html"><strong aria-hidden="true">8.</strong> Common Collections</a></li><li><ol class="section"><li><a href="ch08-01-vectors.html"><strong aria-hidden="true">8.1.</strong> Vectors</a></li><li><a href="ch08-02-strings.html"><strong aria-hidden="true">8.2.</strong> Strings</a></li><li><a href="ch08-03-hash-maps.html"><strong aria-hidden="true">8.3.</strong> Hash Maps</a></li></ol></li><li><a href="ch09-00-error-handling.html"><strong aria-hidden="true">9.</strong> Error Handling</a></li><li><ol class="section"><li><a href="ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">9.1.</strong> Unrecoverable Errors with panic!</a></li><li><a href="ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">9.2.</strong> Recoverable Errors with Result</a></li><li><a href="ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">9.3.</strong> To panic! or Not To panic!</a></li></ol></li><li><a href="ch10-00-generics.html"><strong aria-hidden="true">10.</strong> Generic Types, Traits, and Lifetimes</a></li><li><ol class="section"><li><a href="ch10-01-syntax.html"><strong aria-hidden="true">10.1.</strong> Generic Data Types</a></li><li><a href="ch10-02-traits.html"><strong aria-hidden="true">10.2.</strong> Traits: Defining Shared Behavior</a></li><li><a href="ch10-03-lifetime-syntax.html"><strong aria-hidden="true">10.3.</strong> Validating References with Lifetimes</a></li></ol></li><li><a href="ch11-00-testing.html"><strong aria-hidden="true">11.</strong> Testing</a></li><li><ol class="section"><li><a href="ch11-01-writing-tests.html"><strong aria-hidden="true">11.1.</strong> Writing tests</a></li><li><a href="ch11-02-running-tests.html"><strong aria-hidden="true">11.2.</strong> Running tests</a></li><li><a href="ch11-03-test-organization.html"><strong aria-hidden="true">11.3.</strong> Test Organization</a></li></ol></li><li><a href="ch12-00-an-io-project.html"><strong aria-hidden="true">12.</strong> An I/O Project: Building a Command Line Program</a></li><li><ol class="section"><li><a href="ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">12.1.</strong> Accepting Command Line Arguments</a></li><li><a href="ch12-02-reading-a-file.html"><strong aria-hidden="true">12.2.</strong> Reading a File</a></li><li><a href="ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">12.3.</strong> Refactoring to Improve Modularity and Error Handling</a></li><li><a href="ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">12.4.</strong> Developing the Library’s Functionality with Test Driven Development</a></li><li><a href="ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">12.5.</strong> Working with Environment Variables</a></li><li><a href="ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">12.6.</strong> Writing Error Messages to Standard Error Instead of Standard Output</a></li></ol></li><li><a href="ch13-00-functional-features.html"><strong aria-hidden="true">13.</strong> Functional Language Features in Rust</a></li><li><ol class="section"><li><a href="ch13-01-closures.html"><strong aria-hidden="true">13.1.</strong> Closures</a></li><li><a href="ch13-02-iterators.html"><strong aria-hidden="true">13.2.</strong> Iterators</a></li><li><a href="ch13-03-improving-our-io-project.html"><strong aria-hidden="true">13.3.</strong> Improving our I/O Project</a></li><li><a href="ch13-04-performance.html"><strong aria-hidden="true">13.4.</strong> Performance</a></li></ol></li><li><a href="ch14-00-more-about-cargo.html"><strong aria-hidden="true">14.</strong> More about Cargo and Crates.io</a></li><li><ol class="section"><li><a href="ch14-01-release-profiles.html"><strong aria-hidden="true">14.1.</strong> Customizing Builds with Release Profiles</a></li><li><a href="ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">14.2.</strong> Publishing a Crate to Crates.io</a></li><li><a href="ch14-03-cargo-workspaces.html"><strong aria-hidden="true">14.3.</strong> Cargo Workspaces</a></li><li><a href="ch14-04-installing-binaries.html"><strong aria-hidden="true">14.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li><a href="ch14-05-extending-cargo.html"><strong aria-hidden="true">14.5.</strong> Extending Cargo with Custom Commands</a></li></ol></li><li><a href="ch15-00-smart-pointers.html"><strong aria-hidden="true">15.</strong> Smart Pointers</a></li><li><ol class="section"><li><a href="ch15-01-box.html"><strong aria-hidden="true">15.1.</strong> Box<T> Points to Data on the Heap and Has a Known Size</a></li><li><a href="ch15-02-deref.html"><strong aria-hidden="true">15.2.</strong> The Deref Trait Allows Access to the Data Through a Reference</a></li><li><a href="ch15-03-drop.html"><strong aria-hidden="true">15.3.</strong> The Drop Trait Runs Code on Cleanup</a></li><li><a href="ch15-04-rc.html"><strong aria-hidden="true">15.4.</strong> Rc<T>, the Reference Counted Smart Pointer</a></li><li><a href="ch15-05-interior-mutability.html"><strong aria-hidden="true">15.5.</strong> RefCell<T> and the Interior Mutability Pattern</a></li><li><a href="ch15-06-reference-cycles.html"><strong aria-hidden="true">15.6.</strong> Creating Reference Cycles and Leaking Memory is Safe</a></li></ol></li><li><a href="ch16-00-concurrency.html"><strong aria-hidden="true">16.</strong> Fearless Concurrency</a></li><li><ol class="section"><li><a href="ch16-01-threads.html"><strong aria-hidden="true">16.1.</strong> Threads</a></li><li><a href="ch16-02-message-passing.html"><strong aria-hidden="true">16.2.</strong> Message Passing</a></li><li><a href="ch16-03-shared-state.html"><strong aria-hidden="true">16.3.</strong> Shared State</a></li><li><a href="ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">16.4.</strong> Extensible Concurrency: Sync and Send</a></li></ol></li><li><a href="ch17-00-oop.html"><strong aria-hidden="true">17.</strong> Is Rust an Object-Oriented Programming Language?</a></li><li><ol class="section"><li><a href="ch17-01-what-is-oo.html"><strong aria-hidden="true">17.1.</strong> What Does Object-Oriented Mean?</a></li><li><a href="ch17-02-trait-objects.html" class="active"><strong aria-hidden="true">17.2.</strong> Trait Objects for Using Values of Different Types</a></li><li><a href="ch17-03-oo-design-patterns.html"><strong aria-hidden="true">17.3.</strong> Object-Oriented Design Pattern Implementations</a></li></ol></li><li><a href="ch18-00-patterns.html"><strong aria-hidden="true">18.</strong> Patterns Match the Structure of Values</a></li><li><ol class="section"><li><a href="ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">18.1.</strong> All the Places Patterns May be Used</a></li><li><a href="ch18-02-refutability.html"><strong aria-hidden="true">18.2.</strong> Refutability: Whether a Pattern Might Fail to Match</a></li><li><a href="ch18-03-pattern-syntax.html"><strong aria-hidden="true">18.3.</strong> All the Pattern Syntax</a></li></ol></li><li><a href="ch19-00-advanced-features.html"><strong aria-hidden="true">19.</strong> Advanced Features</a></li><li><ol class="section"><li><a href="ch19-01-unsafe-rust.html"><strong aria-hidden="true">19.1.</strong> Unsafe Rust</a></li><li><a href="ch19-02-advanced-lifetimes.html"><strong aria-hidden="true">19.2.</strong> Advanced Lifetimes</a></li><li><a href="ch19-03-advanced-traits.html"><strong aria-hidden="true">19.3.</strong> Advanced Traits</a></li><li><a href="ch19-04-advanced-types.html"><strong aria-hidden="true">19.4.</strong> Advanced Types</a></li><li><a href="ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">19.5.</strong> Advanced Functions &amp; Closures</a></li></ol></li><li><a href="ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">20.</strong> Final Project: Building a Multithreaded Web Server</a></li><li><ol class="section"><li><a href="ch20-01-single-threaded.html"><strong aria-hidden="true">20.1.</strong> A Single Threaded Web Server</a></li><li><a href="ch20-02-slow-requests.html"><strong aria-hidden="true">20.2.</strong> How Slow Requests Affect Throughput</a></li><li><a href="ch20-03-designing-the-interface.html"><strong aria-hidden="true">20.3.</strong> Designing the Thread Pool Interface</a></li><li><a href="ch20-04-storing-threads.html"><strong aria-hidden="true">20.4.</strong> Creating the Thread Pool and Storing Threads</a></li><li><a href="ch20-05-sending-requests-via-channels.html"><strong aria-hidden="true">20.5.</strong> Sending Requests to Threads Via Channels</a></li><li><a href="ch20-06-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">20.6.</strong> Graceful Shutdown and Cleanup</a></li></ol></li><li><a href="appendix-00.html"><strong aria-hidden="true">21.</strong> Appendix</a></li><li><ol class="section"><li><a href="appendix-01-keywords.html"><strong aria-hidden="true">21.1.</strong> A - Keywords</a></li><li><a href="appendix-02-operators.html"><strong aria-hidden="true">21.2.</strong> B - Operators</a></li></ol></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">The Rust Programming Language</h1> 
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="ch17-02-trait-objects.html#aОбъекты-типажи--trait-objects-for-using-values-of-different-types" id="aОбъекты-типажи--trait-objects-for-using-values-of-different-types"><h2>Объекты-типажи  Trait Objects for Using Values of Different Types</h2></a>
+<p>В Главе 8 мы говорили о том что, ограничением векторов - хранение данных только
+одного типа. В примере 8-1 мы демонстрировали, как перечисления могут хранить
+разные типы данных внутри каждого значения. Вектор может хранить данные такого
+перечисления. Такая конструкция удобна в том случае, когда необходима структура
+состоящая из фиксированного набора данных.</p>
+<!-- The code example I want to reference did not have a listing number; it's
+the one with SpreadsheetCell. I will go back and add Listing 8-1 next time I
+get Chapter 8 for editing. /Carol -->
+<p>В некоторых случаях возникает необходимость иметь набор типов, которые можно было
+бы расширять пользователям библиотеки. Например, множество графических библиотек
+имеют интерфейсы, благодаря которым создаваемые на их основе новые компоненты
+могут становиться частью системы, расширяя её возможности. Например, интерфейс
+может иметь метод <code>draw</code> и каждый новый элемент, которые его реализует может
+быть использован для рисования. Мы рассмотрим как эту концепцию можно реализовать
+в Rust.</p>
+<p>При создании графической библиотеки (назовём её <code>rust_gui</code>), мы не можем заранее
+знать всех типов которые пользователи библиотеки хотят создать. Мы не можем создать
+<code>enum</code>, которая содержала бы все возможные типы. Особенностью графической библиотеки
+в том, что предоставив интерфейсы нельзя будет заранее знать, какой код будет выполнен
+при вызове методов (например, при вызове метода <code>draw</code>).</p>
+<p>В языках программирования, в которых реализовано наследование эту задачу можно
+было бы решить созданием абстрактного класса <code>Component</code>, который бы имел
+виртуальный метод <code>draw</code>. Все реализовавшие этот класс имели бы свою реализацию
+метода. Использующий код данных методов относился бы ко всем реализациям класса
+<code>Component</code>, как к этому классу (используя только функциональные возможности
+предоставляемые этим классом).</p>
+<a class="header" href="ch17-02-trait-objects.html#aОпределение-типажа-с-виртуальным-общим-методом-поведением" id="aОпределение-типажа-с-виртуальным-общим-методом-поведением"><h3>Определение типажа с виртуальным (общим) методом (поведением)</h3></a>
+<p>В Rust мы можем определить типаж, который мы назовем «Draw». Он будет иметь один
+виртуальный метод (метод требующий реализации) <code>draw</code>. Далее, мы можем создать
+вектор, который содержит список указателей (<code>&amp;</code>-ссылок или умных указателей <code>Box&lt;T&gt;</code>).
+Мы поговорим о причинах, по которым объекты-типажи должны быть внутри указателями
+в главе 19.</p>
+<p>Мы упоминали, что мы не можем называть структуры и перечисления &quot;объектами&quot;, т.к.
+они имеют особую природу (не похожую на объекты в других языках программирования).
+В структурах и перечислениях объявление полей и поведений разделены. Объекты-типажи
+больше напоминают объекты (ООП-языков), в том смысле, что они объединяют данные,
+составленные из указателя на конкретный объект, с поведением методов, определенных в признаке.
+В тоже время типажи не могут хранить данные. Их цель предоставлять поведение.</p>
+<p>Типаж определяет поведение, которое необходимо в определённой ситуации. Далее,
+вы можем использовать типаж-объект, где мы хотели бы использовать конкретный тип
+или обобщенный тип. Система типов Rust предполагает, что реализации типажей имеют
+соответствующий функционал. В примере 17-3 показано, как определить типаж <code>Draw</code>
+содержащий метод <code>draw</code>:</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+pub trait Draw {
+    fn draw(&amp;self);
+}
+#}</code></pre></pre>
+<p><span class="caption">код 17-3: определение типажа <code>Draw</code> trait</span></p>
+<!-- NEXT PARAGRAPH WRAPPED WEIRD INTENTIONALLY SEE #199 -->
+<p>Думаю, что тут всё понятно. Далее, добавим кое-что новое. В коде 17-4 в структуре
+<code>Screen</code>, которая содержит поле <code>components</code>, которое является вектором, содержащее
+данные типа <code>Box&lt;Draw&gt;</code>. <code>Box&lt;Draw&gt;</code> является объектом-типажом, т.к. в обёртке
+<code>Box&lt;T&gt;</code> может содержаться любое значение реализовавшее типаж <code>Draw</code>.</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+# pub trait Draw {
+#     fn draw(&amp;self);
+# }
+#
+pub struct Screen {
+    pub components: Vec&lt;Box&lt;Draw&gt;&gt;,
+}
+#}</code></pre></pre>
+<p><span class="caption">код 17-4: определение структуры <code>Screen</code> с полем
+<code>components</code>, который является вектором типажа-объектов, которые реализуют типаж
+<code>Draw</code></span></p>
+<p>В структуре <code>Screen</code>, мы определим метод <code>run</code>, который будет вызывать метод <code>draw</code>
+каждого элемента вектора <code>components</code> (17-5):</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+# pub trait Draw {
+#     fn draw(&amp;self);
+# }
+#
+# pub struct Screen {
+#     pub components: Vec&lt;Box&lt;Draw&gt;&gt;,
+# }
+#
+impl Screen {
+    pub fn run(&amp;self) {
+        for component in self.components.iter() {
+            component.draw();
+        }
+    }
+}
+#}</code></pre></pre>
+<p><span class="caption">код 17-5: реализация метода <code>run</code> в <code>Screen</code>, который вызывает
+метод <code>draw</code> каждого элемента вектора</span></p>
+<p>Это решение отличается от использования обобщенного параметра и типажа. Обобщенный
+параметр может быть использовать только для какого-то конкретного типа, в то время
+как типаж объекта может быть использован для любого конкретного типа. Рассмотрим
+пример совметного использования обобщенного типа и объекта-типажа (17-6):</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+# pub trait Draw {
+#     fn draw(&amp;self);
+# }
+#
+pub struct Screen&lt;T: Draw&gt; {
+    pub components: Vec&lt;T&gt;,
+}
+
+impl&lt;T&gt; Screen&lt;T&gt;
+    where T: Draw {
+    pub fn run(&amp;self) {
+        for component in self.components.iter() {
+            component.draw();
+        }
+    }
+}
+#}</code></pre></pre>
+<p><span class="caption">код 17-6: альтернативная реализация структуры <code>Screen</code> и
+метода <code>run</code>, используя обобщенный объект-типаж </span></p>
+<p>Это решение вводит ограничение для экземпляров структуры <code>Screen</code> (вектор может
+хранить только однотипные экземпляры, реализовавшие  типаж <code>Draw</code> - например, только
+<code>Button</code> или только <code>TextField</code>). Если у вас будут только однородные коллекции,
+использование дженериков и объектов-типажей предпочтительнее, поскольку экземпляры
+будут мономорфны.</p>
+<p>В отличие от предыдущего примера, один экземпляр <code>Screen</code> может хранить вектор,
+содержащий или <code>Box&lt;Button&gt;</code> или <code>Box&lt;TextField&gt;</code>. Далее мы рассмотрим как это работает
+подробнее, а также поговорим о вопросах производительности во время выполнения программы.</p>
+<a class="header" href="ch17-02-trait-objects.html#aРеализации-типажа" id="aРеализации-типажа"><h3>Реализации типажа</h3></a>
+<p>Теперь добавим реализации типажа <code>Draw</code> в наш код. Наши реализации не будут содержать
+кода внутри методов (для простоты) 17-7:</p>
+<p><span class="filename">Filename: src/lib.rs</span></p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+# pub trait Draw {
+#     fn draw(&amp;self);
+# }
+#
+pub struct Button {
+    pub width: u32,
+    pub height: u32,
+    pub label: String,
+}
+
+impl Draw for Button {
+    fn draw(&amp;self) {
+        // Code to actually draw a button
+    }
+}
+#}</code></pre></pre>
+<p><span class="caption">код 17-7: структура <code>Button</code> реализует типаж <code>Draw</code></span></p>
+<p>Поля <code>width</code>, <code>height</code> и <code>label</code> структуры  <code>Button</code> будут отличаться от, например,
+полей другой структуры <code>TextField</code>, которая может иметь поля <code>width</code>, <code>height</code>,
+<code>label</code> и <code>placeholder</code>. Каждая реализация также имеет свою версию метода <code>draw</code>.
+Дополнительно структура <code>Button</code> может иметь ещё одни блок <code>impl</code>, содержащие
+дополнительные методы. Этим методы может не иметь любая другая реализация <code>Draw</code>.
+Во внешней библиотеке также можно реализовать типаж <code>Draw</code> (17-8):</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><code class="language-rust ignore">extern crate rust_gui;
+use rust_gui::Draw;
+
+struct SelectBox {
+    width: u32,
+    height: u32,
+    options: Vec&lt;String&gt;,
+}
+
+impl Draw for SelectBox {
+    fn draw(&amp;self) {
+        // Code to actually draw a select box
+    }
+}
+</code></pre>
+<p><span class="caption">код 17-8: использование внешнего контейнера <code>rust_gui</code> и
+реализация типажа <code>Draw</code> структурой <code>SelectBox</code></span></p>
+<p>Пользователь нашей библиотеки может реализовать функцию <code>main</code> и в ней создать
+экземпляр <code>Screen</code> и добавить экземпляры структур <code>SelectBox</code> и <code>Button</code> в вектор
+с помощью умного указателя <code>Box&lt;T&gt;</code>. В коде можно вызывать метод <code>run</code> структуры
+<code>Screen</code>, который в свою очередь вызовет метод <code>draw</code> в каждом компоненте вектора.
+Код 17-9 демонстрирует реализацию:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><code class="language-rust ignore">use rust_gui::{Screen, Button};
+
+fn main() {
+    let screen = Screen {
+        components: vec![
+            Box::new(SelectBox {
+                width: 75,
+                height: 10,
+                options: vec![
+                    String::from(&quot;Yes&quot;),
+                    String::from(&quot;Maybe&quot;),
+                    String::from(&quot;No&quot;)
+                ],
+            }),
+            Box::new(Button {
+                width: 50,
+                height: 10,
+                label: String::from(&quot;OK&quot;),
+            }),
+        ],
+    };
+
+    screen.run();
+}
+</code></pre>
+<p><span class="caption">код 17-9: использование объектов-типаже для хранения значений
+различных типов, которые реализовали типаж</span></p>
+<p>Несмотря на то, что мы не знали, что кто-то однажды добавит тип <code>SelectBox</code>,
+наша реализация <code>Screen</code> смогла работать с <code>SelectBox</code> и нарисовать её,
+т.к. <code>SelectBox</code> реализует тип<code>Draw</code>, что означает, что он реализует
+метод <code>draw</code>.</p>
+<p>Это демонстрация неявной типизации (т.н. <em>duck typing</em>). В реализации метода <code>run</code>
+структуры <code>Screen</code> (17-5) не нужно знать тип конкретного элемента. Необходимо только
+знать, что этот элемент имеет метод <code>draw</code>.</p>
+<p>Плюсом реализации подобного решения является отсутствие необходимости проверять
+начие реализации метода во время работы программы. Код не будет скомпилирован, если
+какой-либо элемент вектора не реализует типаж.</p>
+<p>Например, код (17-10) демонстрирует, что случится если мын попытаемся добавить
+<code>String</code> в качестве компонента вектора:</p>
+<p><span class="filename">Filename: src/main.rs</span></p>
+<pre><code class="language-rust ignore">extern crate rust_gui;
+use rust_gui::Draw;
+
+fn main() {
+    let screen = Screen {
+        components: vec![
+            Box::new(String::from(&quot;Hi&quot;)),
+        ],
+    };
+
+    screen.run();
+}
+</code></pre>
+<p><span class="caption">код 17-10: попытка использования типа, который не реализовал
+типаж объекта-типажа</span></p>
+<p>Мы получили ошибку, т.к. <code>String</code> не реализовал типаж <code>Draw</code>:</p>
+<pre><code class="language-text">error[E0277]: the trait bound `std::string::String: Draw` is not satisfied
+  --&gt;
+   |
+ 4 |             Box::new(String::from(&quot;Hi&quot;)),
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Draw` is not
+   implemented for `std::string::String`
+   |
+   = note: required for the cast to the object type `Draw`
+</code></pre>
+<a class="header" href="ch17-02-trait-objects.html#aТипажи-объектов-выполняют-динамическую-диспетчеризацию-связывание" id="aТипажи-объектов-выполняют-динамическую-диспетчеризацию-связывание"><h3>Типажи-объектов выполняют динамическую диспетчеризацию (связывание)</h3></a>
+<p>Напомним что в главе 10, когда мы обсуждали процесс мономорфизации, что
+компилятор выполняет, когда мы используем типажи для ограничения в дженероках:
+компилятор создаёт реализации для конкретных типов, которые использует в месте
+использования такого обобщенного параметра. Т.е. компилятор выполняет
+<em>статическую связывание</em>. Такой код работает очень быстро.</p>
+<p>Когда же мы используем типажи-объекты, компилятор не может выполнить мономорфизацию,
+т.к. мы не знаемвсех типов, которые могут быть использованы в коде, Rust отслеживает
+код, который может использоваться при вызове метода и выполнят это работу во время
+выполнения программы. Это приводик к замедлению работы программы.</p>
+<p>Динамическая диспечеризация также предостерегает компилятор выбирать встроенный
+код метода, который предотвращает некоторые оптимизации. Благодаря чему мы получили
+дополнительную гибкость в коде.</p>
+<a class="header" href="ch17-02-trait-objects.html#aБезопасность-типажей-объектов" id="aБезопасность-типажей-объектов"><h3>Безопасность типажей-объектов</h3></a>
+<!-- Liz: we're conflicted on including this section. Not being able to use a
+trait as a trait object because of object safety is something that
+beginner/intermediate Rust developers run into sometimes, but explaining it
+fully is long and complicated. Should we just cut this whole section? Leave it
+(and finish the explanation of how to fix the error at the end)? Shorten it to
+a quick caveat, that just says something like "Some traits can't be trait
+objects. Clone is an example of one. You'll get errors that will let you know
+if a trait can't be a trait object, look up object safety if you're interested
+in the details"? Thanks! /Carol -->
+<p>Не все типажи могут быть типажами-объектами. Только безопасные типажи-объекты могут
+ими быть. Чтобы быть безопасным типаж должен соответствовать следующим условиям:</p>
+<ul>
+<li>The trait does not require <code>Self</code> to be <code>Sized</code></li>
+<li>все методы типажа являются безопасными.</li>
+</ul>
+<p><code>Self</code> - это ключевое слово, которое является псевдонимом типа, который реализовал
+типаж или методы. <code>Sized</code> является типажём-маркером, таким как <code>Send</code> и <code>Sync</code>.
+<code>Sized</code> автоматически реализуется в типах, которые имеют известный тип во время
+компиляции (такие как <code>i32</code> и ссылки). Типы, которые не имеют известный размер,
+включая срезы (<code>[T]</code>) и объекты-типажи.
+<code>Sized</code> является неявным типов всех обобщенных параметров по умолчанию. Большинство
+полезных операций в Rust требуют от использованного типа реализовать <code>Sized</code>.
+Если нам необходимо использовать в срезах типажи, то мы должны явным образом указать
+это с помощью <code>T: ?Sized</code>.</p>
+<p>Типажи имеют опцию по умолчанию <code>Self: ?Sized</code>. Это значит, что они могут быть
+реализованы в типах, которым могут быть, а могут не быть <code>Sized</code>.  Например, если
+мы создадим типаж <code>Foo</code>, который реализовывает <code>Self: ?Sized</code>, то он выглядит так:</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+trait Foo: Sized {
+    fn some_method(&amp;self);
+}
+#}</code></pre></pre>
+<p>Теперь типаж <code>Sized</code> является родительским типажом (<em>supertrait</em>) <code>Foo</code>. Это значит,
+что <code>Foo</code> требует от своих реализаций реализацию методов описанных в декларации
+<code>Foo</code> (т.е. <code>Self</code>) были также <code>Sized</code>. Мы поговорим о <em>supertrait</em> в Главе 19.</p>
+<p><code>Foo</code> требует чтобы <code>Self</code> реализовал <code>Sized</code>. В тоже время <code>Self</code> нельзя использовать
+в типажах объектов.</p>
+<p><code>Foo</code> requires <code>Self</code> to be <code>Sized</code>, and therefore is not allowed to be used in
+a trait object like <code>Box&lt;Foo&gt;</code>. This is because it would be impossible to implement
+the trait <code>Foo</code> for a trait object like <code>Box&lt;Foo&gt;</code>: trait objects aren’t sized,
+but <code>Foo</code> requires <code>Self</code> to be <code>Sized</code>. A type can’t be both sized and unsized
+at the same time!</p>
+<p>For the second object safety requirement that says all of a trait’s methods
+must be object safe, a method is object safe if either:</p>
+<ul>
+<li>It requires <code>Self</code> to be <code>Sized</code> or</li>
+<li>It meets all three of the following:
+<ul>
+<li>It must not have any generic type parameters</li>
+<li>Its first argument must be of type <code>Self</code> or a type that dereferences to
+the Self type (that is, it must be a method rather than an associated
+function and have <code>self</code>, <code>&amp;self</code>, or <code>&amp;mut self</code> as the first argument)</li>
+<li>It must not use <code>Self</code> anywhere else in the signature except for the
+first argument</li>
+</ul>
+</li>
+</ul>
+<p>Those rules are a bit formal, but think of it this way: if your method requires
+the concrete <code>Self</code> type somewhere in its signature, but an object forgets the
+exact type that it is, there’s no way that the method can use the original
+concrete type that it’s forgotten. Same with generic type parameters that are
+filled in with concrete type parameters when the trait is used: the concrete
+types become part of the type that implements the trait. When the type is
+erased by the use of a trait object, there’s no way to know what types to fill
+in the generic type parameters with.</p>
+<p>Пример типажа, у которого методы не безопасны - это типаж стандартной библиотеки
+<code>Clone</code>. Реализация метода <code>clone</code> в <code>Clone</code> выглядит следующим образом:</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+pub trait Clone {
+    fn clone(&amp;self) -&gt; Self;
+}
+#}</code></pre></pre>
+<p>Типаж <code>String</code> реализует <code>Clone</code> и вызывает метод  <code>clone</code> вы получаете ссылку на
+экземпляр <code>String</code>.
+<code>String</code> implements the <code>Clone</code> trait, and when we call the <code>clone</code> method on
+an instance of <code>String</code> we get back an instance of <code>String</code>. Similarly, if we
+call <code>clone</code> on an instance of <code>Vec</code>, we get back an instance of <code>Vec</code>. The
+signature of <code>clone</code> needs to know what type will stand in for <code>Self</code>, since
+that’s the return type.</p>
+<p>If we try to implement <code>Clone</code> on a trait like the <code>Draw</code> trait from Listing
+17-3, we wouldn’t know whether <code>Self</code> would end up being a <code>Button</code>, a
+<code>SelectBox</code>, or some other type that will implement the <code>Draw</code> trait in the
+future.</p>
+<p>Компилятор сообщит вам, если вы попытаетесь нарушить правила. Например, такой код не
+скомпилируется:</p>
+<pre><code class="language-rust ignore">pub struct Screen {
+    pub components: Vec&lt;Box&lt;Clone&gt;&gt;,
+}
+</code></pre>
+<p>Мы получим ошибку:</p>
+<pre><code class="language-text">error[E0038]: the trait `std::clone::Clone` cannot be made into an object
+ --&gt;
+  |
+2 |     pub components: Vec&lt;Box&lt;Clone&gt;&gt;,
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::clone::Clone` cannot be
+  made into an object
+  |
+  = note: the trait cannot require that `Self : Sized`
+</code></pre>
+<!-- If we are including this section, we would explain how to fix this
+problem. It involves adding another trait and implementing Clone manually for
+that trait. Because this section is getting long, I stopped because it feels
+like we're off in the weeds with an esoteric detail that not everyone will need
+to know about. /Carol -->
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="ch17-01-what-is-oo.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="ch17-03-oo-design-patterns.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="ch17-01-what-is-oo.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="ch17-03-oo-design-patterns.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+
+        
+        <script src="searchindex.js" type="text/javascript" charset="utf-8"></script>
+        
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+    </body>
+</html>
